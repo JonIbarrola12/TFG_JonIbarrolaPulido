@@ -7,6 +7,12 @@ Backend/SportsHome/*.suo
 Backend/SportsHome/*.log
 Backend/SportsHome/appsettings.Development.json
 
+# Frontend (Angular / Node)
+Frontend/SportsHome/node_modules/
+Frontend/SportsHome/dist/
+Frontend/SportsHome/.angular/
+Frontend/SportsHome/.vscode/
+
 # Database
 Database/*.bak
 Database/*.mdf
