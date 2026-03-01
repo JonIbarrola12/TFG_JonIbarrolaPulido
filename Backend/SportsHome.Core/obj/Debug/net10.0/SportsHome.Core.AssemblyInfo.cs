@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SportsHome.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e7df8ef6876a1e98d3075ede51c5357db0e9598")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4f695430a580f906ccc6724ddaf7d1ac4aac78ac")]
 [assembly: System.Reflection.AssemblyProductAttribute("SportsHome.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SportsHome.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

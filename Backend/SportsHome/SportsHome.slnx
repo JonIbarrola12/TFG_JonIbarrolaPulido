@@ -1,6 +1,14 @@
 <Solution>
   <Folder Name="/01.Presentacion/">
+    <Project Path="../SportsHome.UI.Controllers/SportsHome.UI.Controllers.csproj" Id="e0d54f9e-d2ad-4cef-b032-6ce68969a492" />
     <Project Path="SportsHome.UI.API.csproj" />
   </Folder>
-  <Folder Name="/NewFolder1/" />
+  <Folder Name="/02.Core/">
+    <Project Path="../SportsHome.Core.Interfaces/SportsHome.Core.Interfaces.csproj" Id="ce52acd2-3421-4d06-a0d1-4c472f1ff7eb" />
+    <Project Path="../SportsHome.Core.Services/SportsHome.Core.Services.csproj" Id="5a94f5ca-69a0-46bb-b795-1ec3941b2111" />
+    <Project Path="../SportsHome.Core/SportsHome.Core.csproj" Id="9c3e783e-28fe-44e7-ab6e-33ac7da28546" />
+  </Folder>
+  <Folder Name="/03.Infrestructura/">
+    <Project Path="../SportsHome.IL.Repository.EF/SportsHome.IL.Repository.EF.csproj" Id="ba3e9593-d7fd-434d-bcec-aa830dbd7f67" />
+  </Folder>
 </Solution>
