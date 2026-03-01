@@ -1,0 +1,4 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@Sportshome.BaseUrl = https://localhost:5001
+GET {{Sportshome.BaseUrl}}/api/teams
+Accept: application/json

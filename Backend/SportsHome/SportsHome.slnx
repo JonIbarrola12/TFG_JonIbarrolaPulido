@@ -1,3 +1,6 @@
 <Solution>
-  <Project Path="SportsHome.csproj" />
+  <Folder Name="/01.Presentacion/">
+    <Project Path="SportsHome.UI.API.csproj" />
+  </Folder>
+  <Folder Name="/NewFolder1/" />
 </Solution>
