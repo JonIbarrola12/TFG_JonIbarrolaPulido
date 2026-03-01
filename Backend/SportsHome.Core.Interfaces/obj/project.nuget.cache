@@ -1,8 +1,80 @@
 {
   "version": 2,
-  "dgSpecHash": "sIr30IAM0BY=",
+  "dgSpecHash": "bK0nrL5Z3SM=",
   "success": true,
   "projectFilePath": "C:\\Users\\jonib\\Desktop\\TFG_JonIbarrolaPulido\\Backend\\SportsHome.Core.Interfaces\\SportsHome.Core.Interfaces.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
+  "expectedPackageFiles": [
+    "C:\\Users\\jonib\\.nuget\\packages\\microsoft.aspnet.odata\\7.7.9\\microsoft.aspnet.odata.7.7.9.nupkg.sha512",
+    "C:\\Users\\jonib\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.2\\microsoft.aspnet.webapi.client.5.2.2.nupkg.sha512",
+    "C:\\Users\\jonib\\.nuget\\packages\\microsoft.aspnet.webapi.core\\5.2.2\\microsoft.aspnet.webapi.core.5.2.2.nupkg.sha512",
+    "C:\\Users\\jonib\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\8.0.0\\microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512",
+    "C:\\Users\\jonib\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\1.0.0\\microsoft.extensions.dependencyinjection.1.0.0.nupkg.sha512",
+    "C:\\Users\\jonib\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\1.0.0\\microsoft.extensions.dependencyinjection.abstractions.1.0.0.nupkg.sha512",
+    "C:\\Users\\jonib\\.nuget\\packages\\microsoft.odata.core\\7.20.0\\microsoft.odata.core.7.20.0.nupkg.sha512",
+    "C:\\Users\\jonib\\.nuget\\packages\\microsoft.odata.edm\\7.20.0\\microsoft.odata.edm.7.20.0.nupkg.sha512",
+    "C:\\Users\\jonib\\.nuget\\packages\\microsoft.spatial\\7.20.0\\microsoft.spatial.7.20.0.nupkg.sha512",
+    "C:\\Users\\jonib\\.nuget\\packages\\newtonsoft.json\\6.0.4\\newtonsoft.json.6.0.4.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "El paquete \"Newtonsoft.Json\" 6.0.4 tiene una vulnerabilidad de gravedad alta conocida, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
+      "projectPath": "C:\\Users\\jonib\\Desktop\\TFG_JonIbarrolaPulido\\Backend\\SportsHome.Core.Interfaces\\SportsHome.Core.Interfaces.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\jonib\\Desktop\\TFG_JonIbarrolaPulido\\Backend\\SportsHome.Core.Interfaces\\SportsHome.Core.Interfaces.csproj",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "El paquete \"Microsoft.AspNet.OData 7.7.9\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" en lugar de la plataforma de destino del proyecto \"net10.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
+      "projectPath": "C:\\Users\\jonib\\Desktop\\TFG_JonIbarrolaPulido\\Backend\\SportsHome.Core.Interfaces\\SportsHome.Core.Interfaces.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\jonib\\Desktop\\TFG_JonIbarrolaPulido\\Backend\\SportsHome.Core.Interfaces\\SportsHome.Core.Interfaces.csproj",
+      "libraryId": "Microsoft.AspNet.OData",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "El paquete \"Microsoft.AspNet.WebApi.Client 5.2.2\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" en lugar de la plataforma de destino del proyecto \"net10.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
+      "projectPath": "C:\\Users\\jonib\\Desktop\\TFG_JonIbarrolaPulido\\Backend\\SportsHome.Core.Interfaces\\SportsHome.Core.Interfaces.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\jonib\\Desktop\\TFG_JonIbarrolaPulido\\Backend\\SportsHome.Core.Interfaces\\SportsHome.Core.Interfaces.csproj",
+      "libraryId": "Microsoft.AspNet.WebApi.Client",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "El paquete \"Microsoft.AspNet.WebApi.Core 5.2.2\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" en lugar de la plataforma de destino del proyecto \"net10.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
+      "projectPath": "C:\\Users\\jonib\\Desktop\\TFG_JonIbarrolaPulido\\Backend\\SportsHome.Core.Interfaces\\SportsHome.Core.Interfaces.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\jonib\\Desktop\\TFG_JonIbarrolaPulido\\Backend\\SportsHome.Core.Interfaces\\SportsHome.Core.Interfaces.csproj",
+      "libraryId": "Microsoft.AspNet.WebApi.Core",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "El paquete \"Newtonsoft.Json 6.0.4\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" en lugar de la plataforma de destino del proyecto \"net10.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
+      "projectPath": "C:\\Users\\jonib\\Desktop\\TFG_JonIbarrolaPulido\\Backend\\SportsHome.Core.Interfaces\\SportsHome.Core.Interfaces.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\jonib\\Desktop\\TFG_JonIbarrolaPulido\\Backend\\SportsHome.Core.Interfaces\\SportsHome.Core.Interfaces.csproj",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }
