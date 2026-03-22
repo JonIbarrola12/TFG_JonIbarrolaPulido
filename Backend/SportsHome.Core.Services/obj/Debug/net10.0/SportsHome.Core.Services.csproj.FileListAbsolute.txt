@@ -1,0 +1,12 @@
+C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.Core.Services\bin\Debug\net10.0\SportsHome.Core.Services.deps.json
+C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.Core.Services\bin\Debug\net10.0\SportsHome.Core.Services.dll
+C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.Core.Services\bin\Debug\net10.0\SportsHome.Core.Services.pdb
+C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.Core.Services\obj\Debug\net10.0\SportsHome.Core.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.Core.Services\obj\Debug\net10.0\SportsHome.Core.Services.AssemblyInfoInputs.cache
+C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.Core.Services\obj\Debug\net10.0\SportsHome.Core.Services.AssemblyInfo.cs
+C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.Core.Services\obj\Debug\net10.0\SportsHome.Core.Services.csproj.CoreCompileInputs.cache
+C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.Core.Services\obj\Debug\net10.0\SportsHome.Core.Services.sourcelink.json
+C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.Core.Services\obj\Debug\net10.0\SportsHome.Core.Services.dll
+C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.Core.Services\obj\Debug\net10.0\refint\SportsHome.Core.Services.dll
+C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.Core.Services\obj\Debug\net10.0\SportsHome.Core.Services.pdb
+C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.Core.Services\obj\Debug\net10.0\ref\SportsHome.Core.Services.dll

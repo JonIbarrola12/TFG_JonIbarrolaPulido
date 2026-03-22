@@ -1,44 +1,39 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using MySqlConnector;
 using SportsHome.Core.Interfaces;
-using SportsHome.IL.Repository.EF.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using SportsHome.Core.Interfaces.Repositories;
+using SportsHome.IL.Repository.EF.Repositories;
 
 namespace SportsHome.IL.Repository.EF
 {
-    public class UnitOfWork : IUnitOfWork 
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly SportsHomeContext _context;
-        private readonly UserHelper _userHelper;
         private IDbContextTransaction? _transaction;
 
-        public UnitOfWork(SportsHomeContext context, UserHelper userHelper)
+        public UnitOfWork(SportsHomeContext context)
         {
             _context = context;
-            _userHelper = userHelper;
+
+            Ligas = new LigasRepository(context);
         }
 
-
-
+        public ILigasRepository Ligas { get; private set; }
 
         public async Task BeginTransactionAsync(CancellationToken cancellationToken = default)
         {
             if (_transaction != null)
-            {
-                throw new InvalidOperationException("Ya existe una transacción activa en el UnitOfWork.");
-            }
+                throw new InvalidOperationException("Ya existe una transacción activa.");
+
             _transaction = await _context.Database.BeginTransactionAsync(cancellationToken);
         }
 
         public async Task CommitTransactionAsync(CancellationToken cancellationToken = default)
         {
-            if (_transaction is null)
-            {
-                throw new InvalidOperationException("No existe una transacción activa para confirmar.");
-            }
+            if (_transaction == null)
+                return;
+
             try
             {
                 await _transaction.CommitAsync(cancellationToken);
@@ -50,13 +45,11 @@ namespace SportsHome.IL.Repository.EF
             }
         }
 
-
         public async Task RollbackTransactionAsync(CancellationToken cancellationToken = default)
         {
-            if (_transaction is null)
-            {
+            if (_transaction == null)
                 return;
-            }
+
             try
             {
                 await _transaction.RollbackAsync(cancellationToken);
@@ -68,7 +61,6 @@ namespace SportsHome.IL.Repository.EF
             }
         }
 
-
         public async Task<int> Complete()
         {
             try
@@ -77,15 +69,18 @@ namespace SportsHome.IL.Repository.EF
             }
             catch (DbUpdateException e)
             {
-                if (e.InnerException.GetType().Equals(typeof(SqlException)))
+                if (e.InnerException is MySqlException sqlEx)
                 {
-                    SqlException sqlEx = (SqlException)e.InnerException;
-                    switch (sqlEx.Number) 
-                    { 
-                        case 547:
-                            throw new InvalidOperationException("5000 - Se ha producido un conflicto relacionado con el registro", sqlEx);
+                    switch (sqlEx.Number)
+                    {
+                        case 1062:
+                            throw new InvalidOperationException("Registro duplicado en la base de datos", sqlEx);
+
+                        case 1451:
+                            throw new InvalidOperationException("No se puede eliminar, existen relaciones asociadas", sqlEx);
                     }
                 }
+
                 throw;
             }
         }

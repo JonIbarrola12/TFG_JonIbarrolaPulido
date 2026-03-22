@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="16.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SportsHome.Core\SportsHome.Core.csproj" />
+    <ProjectReference Include="..\SportsHome.Core.Interfaces\SportsHome.Core.Interfaces.csproj" />
+    <ProjectReference Include="..\SportsHome.IL.Repository.EF\SportsHome.IL.Repository.EF.csproj" />
+  </ItemGroup>
+
+</Project>

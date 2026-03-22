@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SportsHome.Core.Interfaces
+﻿namespace SportsHome.Core.Interfaces
 {
     public interface IService<TEntity> where TEntity : class
     {
