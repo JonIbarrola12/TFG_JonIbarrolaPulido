@@ -17,6 +17,16 @@ namespace SportsHome.UI.Controllers.Helpers
             CreateMap<Ligas, Ligas>()
                 .ForMember(l => l.LigaId, opt => opt.Ignore());
             #endregion
+
+            #region Equipos
+            CreateMap<Equipos, EquiposResource>();
+
+            CreateMap<EquiposResource, Equipos>()
+                .ForMember(e => e.EquipoId, opt => opt.Ignore());
+
+            CreateMap<Equipos, Equipos>()
+                .ForMember(e => e.EquipoId, opt => opt.Ignore());
+            #endregion
         }
     }
 }

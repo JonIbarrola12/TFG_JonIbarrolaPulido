@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SportsHome.Core.Entities;
 using SportsHome.Core.Interfaces.Services;
-using SportsHome.Core.Services;
 using SportsHome.UI.Controllers.Resources;
 
 namespace SportsHome.UI.Controllers

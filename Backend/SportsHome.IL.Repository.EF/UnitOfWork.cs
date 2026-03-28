@@ -20,6 +20,7 @@ namespace SportsHome.IL.Repository.EF
         }
 
         public ILigasRepository Ligas { get; private set; }
+        public IEquiposRepository Equipos { get; private set; }
 
         public async Task BeginTransactionAsync(CancellationToken cancellationToken = default)
         {
