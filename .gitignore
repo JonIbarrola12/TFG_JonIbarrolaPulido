@@ -1,22 +1,22 @@
-# Backend (C# / .NET)
-Backend/SportsHome/bin/
-Backend/SportsHome/obj/
-Backend/SportsHome/.vs/
-Backend/SportsHome/*.user
-Backend/SportsHome/*.suo
-Backend/SportsHome/*.log
-Backend/SportsHome/appsettings.Development.json
+# .NET
+**/bin/
+**/obj/
+.vs/
+*.user
+*.suo
+*.log
+appsettings.Development.json
 
-# Frontend (Angular / Node)
-Frontend/SportsHome/node_modules/
-Frontend/SportsHome/dist/
-Frontend/SportsHome/.angular/
-Frontend/SportsHome/.vscode/
+# Angular / Node
+node_modules/
+dist/
+.angular/
+.vscode/
 
 # Database
-Database/*.bak
-Database/*.mdf
-Database/*.ldf
+*.bak
+*.mdf
+*.ldf
 
 # Docs
-Docs/**/*.tmp
+**/*.tmp

@@ -1,5 +1,0 @@
-C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.UI.Controllers\obj\Debug\net10.0\SportsHome.UI.Controllers.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.UI.Controllers\obj\Debug\net10.0\SportsHome.UI.Controllers.AssemblyInfoInputs.cache
-C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.UI.Controllers\obj\Debug\net10.0\SportsHome.UI.Controllers.AssemblyInfo.cs
-C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.UI.Controllers\obj\Debug\net10.0\SportsHome.UI.Controllers.csproj.CoreCompileInputs.cache
-C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.UI.Controllers\obj\Debug\net10.0\SportsHome.UI.Controllers.sourcelink.json

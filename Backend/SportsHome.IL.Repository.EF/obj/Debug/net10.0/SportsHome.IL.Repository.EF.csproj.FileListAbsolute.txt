@@ -1,6 +1,0 @@
-C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.IL.Repository.EF\obj\Debug\net10.0\SportsHome.IL.Repository.EF.csproj.AssemblyReference.cache
-C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.IL.Repository.EF\obj\Debug\net10.0\SportsHome.IL.Repository.EF.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.IL.Repository.EF\obj\Debug\net10.0\SportsHome.IL.Repository.EF.AssemblyInfoInputs.cache
-C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.IL.Repository.EF\obj\Debug\net10.0\SportsHome.IL.Repository.EF.AssemblyInfo.cs
-C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.IL.Repository.EF\obj\Debug\net10.0\SportsHome.IL.Repository.EF.csproj.CoreCompileInputs.cache
-C:\Users\jonib\Desktop\TFG_JonIbarrolaPulido\Backend\SportsHome.IL.Repository.EF\obj\Debug\net10.0\SportsHome.IL.Repository.EF.sourcelink.json
