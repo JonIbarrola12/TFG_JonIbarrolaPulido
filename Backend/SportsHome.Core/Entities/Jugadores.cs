@@ -12,5 +12,7 @@
         public string Altura { get; set; }
         public string Peso { get; set; }
         public string Foto { get; set; }
+
+        public ICollection<JugadoresEquipos> JugadoresEquipos { get; set; }
     }
 }

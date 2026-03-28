@@ -16,5 +16,7 @@ namespace SportsHome.Core.Entities
         public string Logo { get; set; }
         public string NombreEstadio { get; set; }
         public int? CapacidadEstadio { get; set; }
+
+        public ICollection<JugadoresEquipos> JugadoresEquipos { get; set; }
     }
 }
