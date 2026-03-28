@@ -9,10 +9,12 @@ namespace SportsHome.IL.Repository.EF.EntityConfigurations
         public void Configure(EntityTypeBuilder<Equipos> builder)
         {
             builder.HasKey(l => l.EquipoId);
+            builder.Property(l => l.ExternalId).IsRequired();
+            builder.HasIndex(e => e.ExternalId).IsUnique();
             builder.Property(l => l.Nombre).IsRequired().HasMaxLength(100);
             builder.Property(l => l.Pais).IsRequired().HasMaxLength(100);
             builder.Property(l => l.Logo).HasMaxLength(255);
-            builder.Property(l => l.NombreEstadio).IsRequired().HasMaxLength(100);
+            builder.Property(l => l.NombreEstadio).HasMaxLength(100).IsRequired(false);
             builder.Property(l => l.CapacidadEstadio).IsRequired(false);
         }
     }

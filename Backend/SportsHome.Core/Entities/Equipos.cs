@@ -9,6 +9,8 @@ namespace SportsHome.Core.Entities
     public class Equipos
     {
         public int EquipoId { get; set; }
+        public int ExternalId { get; set; }
+
         public string Nombre { get; set; }
         public string Pais { get; set; }
         public int? Fundacion { get; set; }
