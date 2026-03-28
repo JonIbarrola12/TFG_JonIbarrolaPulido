@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SportsHome.UI.Controllers")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+38ec037e1d8446dfb88d564961d00235a09b505c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+699a23773407fcf0e2578a29f8aa2c0014dbc832")]
 [assembly: System.Reflection.AssemblyProductAttribute("SportsHome.UI.Controllers")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SportsHome.UI.Controllers")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,8 +1,11 @@
+using System;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.ModelBuilder;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Microsoft.Extensions.Logging;
 using Microsoft.OData.Edm;
 using SportsHome.Core.Entities;
 using SportsHome.Core.Interfaces;
@@ -10,6 +13,7 @@ using SportsHome.Core.Interfaces.Services;
 using SportsHome.Core.Services;
 using SportsHome.IL.Repository.EF;
 using SportsHome.UI.Controllers.Helpers;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +23,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 // Servicios
 builder.Services.AddScoped<ILigasService, LigasService>();
 
-// AutoMapper - escanea todos los perfiles en los assemblies de SportsHome
+// AutoMapper - registrar perfiles automáticamente
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
 // Auto-descubrimiento de controladores: carga todos los assemblies SportsHome.*.dll
@@ -67,8 +71,16 @@ builder.Services.AddSwaggerGen(c =>
 
 // DbContext + MySQL
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+// Use explicit MySQL server version to avoid AutoDetect (which opens a connection at startup)
+var serverVersion = new MySqlServerVersion(new Version(5, 7, 0));
 builder.Services.AddDbContext<SportsHomeContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
+    options.UseMySql(connectionString, serverVersion, mySqlOptions =>
+    {
+        // Enable transient error resiliency for transient DB failures
+        mySqlOptions.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(10), errorNumbersToAdd: null);
+    })
+           .EnableSensitiveDataLogging()
+           .LogTo(Console.WriteLine, LogLevel.Information)
 );
 
 var app = builder.Build();
