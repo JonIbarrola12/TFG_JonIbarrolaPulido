@@ -10,5 +10,7 @@ namespace SportsHome.Core.Entities
         public string Nombre { get; set; }
         public string Pais { get; set; }
         public string Logo { get; set; }
+
+        public ICollection<LigasTemporadas> Temporadas { get; set; }
     }
 }

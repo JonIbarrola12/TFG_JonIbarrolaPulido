@@ -12,11 +12,15 @@ namespace SportsHome.IL.Repository.EF
         }
         public DbSet<Ligas> Ligas { get; set; }
         public DbSet<Equipos> Equipos { get; set; }
+        public DbSet<LigasTemporadas> LigasTemporadas { get; set; }
+        public DbSet<Jugadores> Jugadores { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new LigasConfiguration());
             modelBuilder.ApplyConfiguration(new EquiposConfiguration());
+            modelBuilder.ApplyConfiguration(new LigasTemporadasConfiguration());
+            modelBuilder.ApplyConfiguration(new JugadoresConfiguration());
         }
     }
 }

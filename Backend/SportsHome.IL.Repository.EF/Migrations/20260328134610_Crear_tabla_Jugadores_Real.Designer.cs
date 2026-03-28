@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportsHome.IL.Repository.EF;
 
@@ -10,9 +11,11 @@ using SportsHome.IL.Repository.EF;
 namespace SportsHome.IL.Repository.EF.Migrations
 {
     [DbContext(typeof(SportsHomeContext))]
-    partial class SportsHomeContextModelSnapshot : ModelSnapshot
+    [Migration("20260328134610_Crear_tabla_Jugadores_Real")]
+    partial class Crear_tabla_Jugadores_Real
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

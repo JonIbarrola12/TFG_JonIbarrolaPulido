@@ -17,10 +17,13 @@ namespace SportsHome.IL.Repository.EF
             _context = context;
 
             Ligas = new LigasRepository(context);
+            Equipos = new EquiposRepository(context);
+            Jugadores = new JugadoresRepository(context);
         }
 
         public ILigasRepository Ligas { get; private set; }
         public IEquiposRepository Equipos { get; private set; }
+        public IJugadoresRepository Jugadores { get; private set; }
 
         public async Task BeginTransactionAsync(CancellationToken cancellationToken = default)
         {

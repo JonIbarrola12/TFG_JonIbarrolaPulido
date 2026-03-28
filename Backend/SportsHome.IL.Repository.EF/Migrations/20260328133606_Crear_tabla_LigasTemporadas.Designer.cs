@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportsHome.IL.Repository.EF;
 
@@ -10,9 +11,11 @@ using SportsHome.IL.Repository.EF;
 namespace SportsHome.IL.Repository.EF.Migrations
 {
     [DbContext(typeof(SportsHomeContext))]
-    partial class SportsHomeContextModelSnapshot : ModelSnapshot
+    [Migration("20260328133606_Crear_tabla_LigasTemporadas")]
+    partial class Crear_tabla_LigasTemporadas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,57 +66,6 @@ namespace SportsHome.IL.Repository.EF.Migrations
                         .IsUnique();
 
                     b.ToTable("Equipos");
-                });
-
-            modelBuilder.Entity("SportsHome.Core.Entities.Jugadores", b =>
-                {
-                    b.Property<int>("JugadorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("JugadorId"));
-
-                    b.Property<string>("Altura")
-                        .HasMaxLength(10)
-                        .HasColumnType("varchar(10)");
-
-                    b.Property<string>("Apellido")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<int?>("Edad")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ExternalId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Foto")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("Nacionalidad")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("varchar(150)");
-
-                    b.Property<string>("NombrePropio")
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Peso")
-                        .HasMaxLength(10)
-                        .HasColumnType("varchar(10)");
-
-                    b.HasKey("JugadorId");
-
-                    b.HasIndex("ExternalId")
-                        .IsUnique();
-
-                    b.ToTable("Jugadores");
                 });
 
             modelBuilder.Entity("SportsHome.Core.Entities.Ligas", b =>
