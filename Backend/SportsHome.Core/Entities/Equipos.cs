@@ -18,5 +18,7 @@ namespace SportsHome.Core.Entities
         public int? CapacidadEstadio { get; set; }
 
         public ICollection<JugadoresEquipos> JugadoresEquipos { get; set; }
+        public ICollection<Partidos> PartidosLocal { get; set; }
+        public ICollection<Partidos> PartidosVisitante { get; set; }
     }
 }

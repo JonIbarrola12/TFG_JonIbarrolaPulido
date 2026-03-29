@@ -16,7 +16,7 @@ namespace SportsHome.UI.Controllers
         private readonly IJugadoresService _jugadorService;
         private readonly IMapper _mapper;
 
-        public JugadoresController(ILogger<LigasController> logger, IMapper mapper, IJugadoresService jugadoresService)
+        public JugadoresController(ILogger<JugadoresController> logger, IMapper mapper, IJugadoresService jugadoresService)
         {
             _logger = logger;
             _mapper = mapper;

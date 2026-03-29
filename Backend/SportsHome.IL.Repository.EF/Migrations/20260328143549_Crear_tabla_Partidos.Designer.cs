@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportsHome.IL.Repository.EF;
 
@@ -11,9 +12,11 @@ using SportsHome.IL.Repository.EF;
 namespace SportsHome.IL.Repository.EF.Migrations
 {
     [DbContext(typeof(SportsHomeContext))]
-    partial class SportsHomeContextModelSnapshot : ModelSnapshot
+    [Migration("20260328143549_Crear_tabla_Partidos")]
+    partial class Crear_tabla_Partidos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,52 +67,6 @@ namespace SportsHome.IL.Repository.EF.Migrations
                         .IsUnique();
 
                     b.ToTable("Equipos");
-                });
-
-            modelBuilder.Entity("SportsHome.Core.Entities.EstadisticasEquiposPartidos", b =>
-                {
-                    b.Property<int>("EstadisticaPartidoEquipoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("EstadisticaPartidoEquipoId"));
-
-                    b.Property<int?>("Corners")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EquipoId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Faltas")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PartidoId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("Posesion")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
-
-                    b.Property<int?>("TarjetasAmarillas")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TarjetasRojas")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TirosAPuerta")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TirosFuera")
-                        .HasColumnType("int");
-
-                    b.HasKey("EstadisticaPartidoEquipoId");
-
-                    b.HasIndex("EquipoId");
-
-                    b.HasIndex("PartidoId", "EquipoId")
-                        .IsUnique();
-
-                    b.ToTable("EstadisticasEquiposPartidos");
                 });
 
             modelBuilder.Entity("SportsHome.Core.Entities.Jugadores", b =>
@@ -308,25 +265,6 @@ namespace SportsHome.IL.Repository.EF.Migrations
                     b.ToTable("Partidos");
                 });
 
-            modelBuilder.Entity("SportsHome.Core.Entities.EstadisticasEquiposPartidos", b =>
-                {
-                    b.HasOne("SportsHome.Core.Entities.Equipos", "Equipo")
-                        .WithMany()
-                        .HasForeignKey("EquipoId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("SportsHome.Core.Entities.Partidos", "Partido")
-                        .WithMany("Estadisticas")
-                        .HasForeignKey("PartidoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Equipo");
-
-                    b.Navigation("Partido");
-                });
-
             modelBuilder.Entity("SportsHome.Core.Entities.JugadoresEquipos", b =>
                 {
                     b.HasOne("SportsHome.Core.Entities.Equipos", "Equipo")
@@ -403,11 +341,6 @@ namespace SportsHome.IL.Repository.EF.Migrations
                     b.Navigation("Partidos");
 
                     b.Navigation("Temporadas");
-                });
-
-            modelBuilder.Entity("SportsHome.Core.Entities.Partidos", b =>
-                {
-                    b.Navigation("Estadisticas");
                 });
 #pragma warning restore 612, 618
         }
