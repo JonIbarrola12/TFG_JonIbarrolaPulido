@@ -8,6 +8,7 @@ namespace SportsHome.Core.Interfaces
         IEquiposRepository Equipos { get; }
         IJugadoresRepository Jugadores { get; }
         IPartidosRepository Partidos { get; }   
+        IEventosPartidosRepository EventosPartidos { get; }
         Task BeginTransactionAsync(CancellationToken cancellationToken = default);
         Task CommitTransactionAsync(CancellationToken cancellationToken = default);
         Task RollbackTransactionAsync(CancellationToken cancellationToken = default);

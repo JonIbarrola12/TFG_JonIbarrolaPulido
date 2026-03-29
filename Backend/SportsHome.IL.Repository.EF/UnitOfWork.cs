@@ -20,12 +20,14 @@ namespace SportsHome.IL.Repository.EF
             Equipos = new EquiposRepository(context);
             Jugadores = new JugadoresRepository(context);
             Partidos = new PartidosRepository(context);
+            EventosPartidos = new EventosPartidosRepository(context);
         }
 
         public ILigasRepository Ligas { get; private set; }
         public IEquiposRepository Equipos { get; private set; }
         public IJugadoresRepository Jugadores { get; private set; }
         public IPartidosRepository Partidos { get; private set; }
+        public IEventosPartidosRepository EventosPartidos { get; private set; }
 
         public async Task BeginTransactionAsync(CancellationToken cancellationToken = default)
         {
