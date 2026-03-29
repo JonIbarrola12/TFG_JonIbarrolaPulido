@@ -57,6 +57,16 @@ namespace SportsHome.UI.Controllers.Helpers
             CreateMap<EventosPartidos, EventosPartidos>()
                 .ForMember(e => e.EventoPartidoId, opt => opt.Ignore());
             #endregion
+
+            #region EstadisticasJugadores
+            CreateMap<EstadisticasJugadores, EstadisticasJugadoresResource>();
+
+            CreateMap<EstadisticasJugadoresResource, EstadisticasJugadores>()
+                .ForMember(e => e.EstadisticaJugadorId, opt => opt.Ignore());
+
+            CreateMap<EstadisticasJugadores, EstadisticasJugadores>()
+                .ForMember(e => e.EstadisticaJugadorId, opt => opt.Ignore());
+            #endregion
         }
     }
 }
