@@ -20,5 +20,6 @@ namespace SportsHome.Core.Entities
         public ICollection<JugadoresEquipos> JugadoresEquipos { get; set; }
         public ICollection<Partidos> PartidosLocal { get; set; }
         public ICollection<Partidos> PartidosVisitante { get; set; }
+        public ICollection<Clasificaciones> Clasificaciones { get; set; }
     }
 }

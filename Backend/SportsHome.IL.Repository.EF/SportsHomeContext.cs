@@ -12,6 +12,7 @@ namespace SportsHome.IL.Repository.EF
         }
         public DbSet<Ligas> Ligas { get; set; }
         public DbSet<Equipos> Equipos { get; set; }
+        public DbSet<Clasificaciones> Clasificaciones { get; set; }
         public DbSet<LigasTemporadas> LigasTemporadas { get; set; }
         public DbSet<Jugadores> Jugadores { get; set; }
         public DbSet<JugadoresEquipos> JugadoresEquipos { get; set; } 
@@ -31,6 +32,7 @@ namespace SportsHome.IL.Repository.EF
             modelBuilder.ApplyConfiguration(new EstadisticasEquiposPartidosConfiguration());
             modelBuilder.ApplyConfiguration(new EventosPartidosConfiguration());
             modelBuilder.ApplyConfiguration(new EstadisticasJugadoresConfiguration());
+            modelBuilder.ApplyConfiguration(new ClasificacionesConfiguration());
         }
     }
 }

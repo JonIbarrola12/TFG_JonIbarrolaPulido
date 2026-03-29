@@ -13,5 +13,6 @@ namespace SportsHome.Core.Entities
 
         public ICollection<LigasTemporadas> Temporadas { get; set; }
         public ICollection<Partidos> Partidos { get; set; }
+        public ICollection<Clasificaciones> Clasificaciones { get; set; }
     }
 }
