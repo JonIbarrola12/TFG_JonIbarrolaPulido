@@ -11,6 +11,7 @@ namespace SportsHome.Core.Interfaces
         IEventosPartidosRepository EventosPartidos { get; }
         IEstadisticasJugadoresRepository EstadisticasJugadores { get; }
         IClasificacionesRepository Clasificaciones { get; }
+        ISyncLogsRepository SyncLogs { get; }
         Task BeginTransactionAsync(CancellationToken cancellationToken = default);
         Task CommitTransactionAsync(CancellationToken cancellationToken = default);
         Task RollbackTransactionAsync(CancellationToken cancellationToken = default);

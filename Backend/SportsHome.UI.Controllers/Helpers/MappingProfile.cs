@@ -77,6 +77,16 @@ namespace SportsHome.UI.Controllers.Helpers
             CreateMap<Clasificaciones, Clasificaciones>()
                 .ForMember(c => c.ClasificacionId, opt => opt.Ignore());
             #endregion
+
+            #region SyncLogs
+            CreateMap<SyncLogs, SyncLogsResource>();
+
+            CreateMap<SyncLogsResource, SyncLogs>()
+                .ForMember(c => c.SyncLogId, opt => opt.Ignore());
+
+            CreateMap<SyncLogs, SyncLogs>()
+                .ForMember(c => c.SyncLogId, opt => opt.Ignore());
+            #endregion
         }
     }
 }
