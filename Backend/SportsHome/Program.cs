@@ -27,6 +27,7 @@ builder.Services.AddScoped<IJugadoresService, JugadoresService>();
 builder.Services.AddScoped<IPartidosService, PartidosService>();
 builder.Services.AddScoped<IEventosPartidosService, EventosPartidosService>();
 builder.Services.AddScoped<IEstadisticasJugadoresService, EstadisticasJugadoresService>();
+builder.Services.AddScoped<IClasificacionesService, ClasificacionesService>();
 
 // AutoMapper - registrar perfiles automáticamente
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);

@@ -22,6 +22,7 @@ namespace SportsHome.IL.Repository.EF
             Partidos = new PartidosRepository(context);
             EventosPartidos = new EventosPartidosRepository(context);
             EstadisticasJugadores = new EstadisticasJugadoresRepository(context);
+            Clasificaciones = new ClasificacionesRepository(context);
         }
 
         public ILigasRepository Ligas { get; private set; }
@@ -30,6 +31,7 @@ namespace SportsHome.IL.Repository.EF
         public IPartidosRepository Partidos { get; private set; }
         public IEventosPartidosRepository EventosPartidos { get; private set; }
         public IEstadisticasJugadoresRepository EstadisticasJugadores { get; private set; }
+        public IClasificacionesRepository Clasificaciones { get; private set; }
 
         public async Task BeginTransactionAsync(CancellationToken cancellationToken = default)
         {

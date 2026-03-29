@@ -1,13 +1,11 @@
-﻿
-using Microsoft.EntityFrameworkCore;
-using SportsHome.Core.Entities;
+﻿using SportsHome.Core.Entities;
 using SportsHome.Core.Interfaces.Repositories;
 
 namespace SportsHome.IL.Repository.EF.Repositories
 {
-    public class EquiposRepository : Repository<Equipos>, IEquiposRepository
+    public class ClasificacionesRepository : Repository<Clasificaciones>, IClasificacionesRepository
     {
-        public EquiposRepository(SportsHomeContext context) : base(context)
+        public ClasificacionesRepository(SportsHomeContext context) : base(context)
         {
         }
 
