@@ -24,6 +24,7 @@ namespace SportsHome.IL.Repository.EF
             EstadisticasJugadores = new EstadisticasJugadoresRepository(context);
             Clasificaciones = new ClasificacionesRepository(context);
             SyncLogs = new SyncLogsRepository(context);
+            Usuarios = new UsuariosRepository(context);
         }
 
         public ILigasRepository Ligas { get; private set; }
@@ -34,6 +35,7 @@ namespace SportsHome.IL.Repository.EF
         public IEstadisticasJugadoresRepository EstadisticasJugadores { get; private set; }
         public IClasificacionesRepository Clasificaciones { get; private set; }
         public ISyncLogsRepository SyncLogs { get; private set; }
+        public IUsuariosRepository Usuarios { get; private set; }
 
         public async Task BeginTransactionAsync(CancellationToken cancellationToken = default)
         {

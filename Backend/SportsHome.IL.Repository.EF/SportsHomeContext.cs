@@ -21,6 +21,7 @@ namespace SportsHome.IL.Repository.EF
         public DbSet<EventosPartidos> EventosPartidos { get; set; }
         public DbSet<EstadisticasJugadores> EstadisticasJugadores { get; set; }
         public DbSet<SyncLogs> SyncLogs { get; set; }
+        public DbSet<Usuarios> Usuarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,6 +36,7 @@ namespace SportsHome.IL.Repository.EF
             modelBuilder.ApplyConfiguration(new EstadisticasJugadoresConfiguration());
             modelBuilder.ApplyConfiguration(new ClasificacionesConfiguration());
             modelBuilder.ApplyConfiguration(new SyncLogsConfiguration());
+            modelBuilder.ApplyConfiguration(new UsuariosConfiguration());
         }
     }
 }

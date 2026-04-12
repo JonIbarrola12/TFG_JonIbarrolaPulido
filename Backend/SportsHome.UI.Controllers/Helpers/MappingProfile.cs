@@ -91,6 +91,20 @@ namespace SportsHome.UI.Controllers.Helpers
             CreateMap<SyncLogs, SyncLogs>()
                 .ForMember(c => c.SyncLogId, opt => opt.Ignore());
             #endregion
+
+            #region Usuarios
+            CreateMap<Usuarios, UsuariosResource>();
+
+            CreateMap<UsuariosResource, Usuarios>()
+                .ForMember(u => u.UsuarioId, opt => opt.Ignore())
+                .ForMember(u => u.Contrasena, opt => opt.Ignore())
+                .ForMember(u => u.CreadoEn, opt => opt.Ignore());
+
+            CreateMap<Usuarios, Usuarios>()
+                .ForMember(u => u.UsuarioId, opt => opt.Ignore())
+                .ForMember(u => u.Contrasena, opt => opt.Ignore())
+                .ForMember(u => u.CreadoEn, opt => opt.Ignore());
+            #endregion
         }
     }
 }

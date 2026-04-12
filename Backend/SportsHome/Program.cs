@@ -41,6 +41,7 @@ builder.Services.AddScoped<IEventosPartidosService, EventosPartidosService>();
 builder.Services.AddScoped<IEstadisticasJugadoresService, EstadisticasJugadoresService>();
 builder.Services.AddScoped<IClasificacionesService, ClasificacionesService>();
 builder.Services.AddScoped<ISyncLogsService, SyncLogsService>();
+builder.Services.AddScoped<IUsuariosService, UsuariosService>();
 
 // Servicio para consumir API Football
 builder.Services.AddHttpClient<IApiFootball, ApiFootballService>(client =>
