@@ -1,15 +1,9 @@
-﻿using SportsHome.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SportsHome.UI.Controllers.Resources
+﻿namespace SportsHome.UI.Controllers.Resources
 {
     public class PartidosResource
     {
         public int PartidoId { get; set; }
+        public int ExternalId { get; set; }
         public int LigaId { get; set; }
         public int Temporada { get; set; }
         public DateTime Fecha { get; set; }
@@ -21,8 +15,8 @@ namespace SportsHome.UI.Controllers.Resources
         public int EquipoVisitanteId { get; set; }
         public int? GolesLocal { get; set; }
         public int? GolesVisitante { get; set; }
-        public Ligas Liga { get; set; }
-        public Equipos EquipoLocal { get; set; }
-        public Equipos EquipoVisitante { get; set; }
+        public LigasResource Liga { get; set; }
+        public EquiposResource EquipoLocal { get; set; }
+        public EquiposResource EquipoVisitante { get; set; }
     }
 }

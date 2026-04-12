@@ -1,8 +1,8 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using SportsHome.Core.Entities;
+using Microsoft.EntityFrameworkCore;
 using SportsHome.Core.Interfaces.Services;
+using SportsHome.IL.Repository.EF;
 using SportsHome.UI.Controllers.Resources;
 
 namespace SportsHome.UI.Controllers
@@ -12,86 +12,88 @@ namespace SportsHome.UI.Controllers
     [ApiController]
     public class EquiposController : ControllerBase
     {
-        private readonly ILogger _logger;
         private readonly IEquiposService _equipoService;
+        private readonly SportsHomeContext _context;
         private readonly IMapper _mapper;
 
-        public EquiposController(ILogger<EquiposController> logger, IMapper mapper, IEquiposService equiposService)
+        public EquiposController(IMapper mapper, IEquiposService equiposService, SportsHomeContext context)
         {
-            _logger = logger;
             _mapper = mapper;
             _equipoService = equiposService;
+            _context = context;
         }
 
         // GET /api/equipos
-        [HttpGet("/api/equipos")]
-        public async Task<IActionResult> Get()
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
         {
-            IEnumerable<Equipos> equipos = await _equipoService.GetListAsync();
-            IEnumerable<EquiposResource> equiposResources = _mapper.Map<IEnumerable<EquiposResource>>(equipos);
-            return Ok(equiposResources);
+            var equipos = await _equipoService.GetListAsync();
+            return Ok(_mapper.Map<IEnumerable<EquiposResource>>(equipos));
         }
 
-        // GET /api/equipos/{/api/equipos/}
-        [HttpGet("/api/equipos/{equipoId}")]
-        public async Task<IActionResult> Get([FromRoute] int equipoId)
+        // GET /api/equipos/5
+        [HttpGet("{equipoId}")]
+        public async Task<IActionResult> GetById(int equipoId)
         {
-            Equipos? equipo = await _equipoService.GetAsync(equipoId);
-            if (equipo == null)
-                return NotFound();
-
-            EquiposResource equiposResource = _mapper.Map<EquiposResource>(equipo);
-            return Ok(equiposResource);
+            var equipo = await _equipoService.GetAsync(equipoId);
+            if (equipo == null) return NotFound();
+            return Ok(_mapper.Map<EquiposResource>(equipo));
         }
 
-        // POST /api/equipos
-        [HttpPost("/api/equipos")]
-        public async Task<IActionResult> Post([FromBody] EquiposResource equipo)
+        // GET /api/equipos/5/jugadores?temporada=2024
+        [HttpGet("{equipoId}/jugadores")]
+        public async Task<IActionResult> GetJugadores(int equipoId, [FromQuery] int? temporada)
         {
-            if (equipo == null)
-                return BadRequest();
+            var temp = temporada ?? DateTime.UtcNow.Year - 1;
 
-            Equipos? e = await _equipoService.AddAsync(_mapper.Map<Equipos>(equipo));
-            EquiposResource equiposResource = _mapper.Map<EquiposResource>(e);
-            return CreatedAtAction(nameof(Get), new { equipoId = equiposResource.EquipoId }, equiposResource);
+            var equipo = await _context.Equipos.FindAsync(equipoId);
+            if (equipo == null) return NotFound();
+
+            var jugadores = await _context.JugadoresEquipos
+                .Include(je => je.Jugador)
+                .Where(je => je.EquipoId == equipoId && je.Temporada == temp)
+                .Select(je => je.Jugador)
+                .OrderBy(j => j.Nombre)
+                .ToListAsync();
+
+            return Ok(_mapper.Map<List<JugadoresResource>>(jugadores));
         }
 
-        // PUT /api/equipos/{equipoId}
-        [HttpPut("/api/equipos/{equipoId}")]
-        public async Task<IActionResult> Put([FromRoute] int equipoId, [FromBody] EquiposResource equipoResource)
+        // GET /api/equipos/5/partidos?temporada=2024
+        [HttpGet("{equipoId}/partidos")]
+        public async Task<IActionResult> GetPartidos(int equipoId, [FromQuery] int? temporada)
         {
-            if (equipoResource == null)
-                return BadRequest();
+            var temp = temporada ?? DateTime.UtcNow.Year - 1;
 
+            var equipo = await _context.Equipos.FindAsync(equipoId);
+            if (equipo == null) return NotFound();
 
-            Equipos? equipoOld = await _equipoService.GetAsync(equipoId);
+            var partidos = await _context.Partidos
+                .Include(p => p.EquipoLocal)
+                .Include(p => p.EquipoVisitante)
+                .Include(p => p.Liga)
+                .Where(p => (p.EquipoLocalId == equipoId || p.EquipoVisitanteId == equipoId)
+                            && p.Temporada == temp)
+                .OrderByDescending(p => p.Fecha)
+                .ToListAsync();
 
-            if (equipoOld == null)
-                return NotFound();
-
-
-            await _equipoService.Update(equipoOld, _mapper.Map<Equipos>(equipoResource));
-            return NoContent();
+            return Ok(_mapper.Map<List<PartidosResource>>(partidos));
         }
 
-        // DELETE /api/equipos/{equipoId}
-        [HttpDelete("/api/equipos/{equipoId}")]
-        public async Task<IActionResult> Delete([FromRoute] int equipoId)
+        // GET /api/equipos/5/estadisticas?temporada=2024
+        [HttpGet("{equipoId}/estadisticas")]
+        public async Task<IActionResult> GetEstadisticas(int equipoId, [FromQuery] int? temporada)
         {
-            Equipos? equipo = await _equipoService.GetAsync(equipoId);
+            var temp = temporada ?? DateTime.UtcNow.Year - 1;
 
-            if (equipo == null)
-                return NotFound();
-            try
-            {
-                await _equipoService.DeleteAsync(equipo);
-                return Ok();
-            }
-            catch (ArgumentException e)
-            {
-                return BadRequest(new { Error = e.Message });
-            }
+            var stats = await _context.EstadisticasJugadores
+                .Include(e => e.Jugador)
+                .Include(e => e.Liga)
+                .Where(e => e.EquipoId == equipoId && e.Temporada == temp)
+                .OrderByDescending(e => e.Goles)
+                .ToListAsync();
 
+            return Ok(_mapper.Map<List<EstadisticasJugadoresResource>>(stats));
         }
     }
 }

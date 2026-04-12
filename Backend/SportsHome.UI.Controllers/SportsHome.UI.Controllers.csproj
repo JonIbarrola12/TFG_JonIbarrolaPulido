@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Helpers\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,8 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SportsHome.Core.Services\SportsHome.Core.Services.csproj" />
     <ProjectReference Include="..\SportsHome.Core\SportsHome.Core.csproj" />
+    <ProjectReference Include="..\SportsHome.Core.Interfaces\SportsHome.Core.Interfaces.csproj" />
+    <ProjectReference Include="..\SportsHome.IL.Repository.EF\SportsHome.IL.Repository.EF.csproj" />
   </ItemGroup>
 
 </Project>

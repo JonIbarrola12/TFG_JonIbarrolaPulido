@@ -1,11 +1,4 @@
-﻿using SportsHome.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SportsHome.UI.Controllers.Resources
+﻿namespace SportsHome.UI.Controllers.Resources
 {
     public class EstadisticasJugadoresResource
     {
@@ -20,8 +13,8 @@ namespace SportsHome.UI.Controllers.Resources
         public int? TarjetasAmarillas { get; set; }
         public int? TarjetasRojas { get; set; }
         public int? Minutos { get; set; }
-        public Jugadores Jugador { get; set; }
-        public Equipos Equipo { get; set; }
-        public Ligas Liga { get; set; }
+        public JugadoresResource Jugador { get; set; }
+        public EquiposResource Equipo { get; set; }
+        public LigasResource Liga { get; set; }
     }
 }

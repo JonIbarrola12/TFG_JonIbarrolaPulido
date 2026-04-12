@@ -18,6 +18,10 @@ namespace SportsHome.UI.Controllers.Helpers
                 .ForMember(l => l.LigaId, opt => opt.Ignore());
             #endregion
 
+            #region LigasTemporadas
+            CreateMap<LigasTemporadas, LigasTemporadasResource>();
+            #endregion
+
             #region Equipos
             CreateMap<Equipos, EquiposResource>();
 

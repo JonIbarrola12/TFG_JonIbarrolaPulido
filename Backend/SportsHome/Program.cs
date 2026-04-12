@@ -1,21 +1,33 @@
-using System;
-using System.Reflection;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData;
-using Microsoft.OData.ModelBuilder;
 using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Microsoft.Extensions.Logging;
 using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using SportsHome.Core.Entities;
 using SportsHome.Core.Interfaces;
 using SportsHome.Core.Interfaces.Services;
 using SportsHome.Core.Services;
 using SportsHome.IL.Repository.EF;
+using SportsHome.UI.API;
 using SportsHome.UI.Controllers.Helpers;
-using AutoMapper;
+using System;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// CORS para Angular
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Angular", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 // Repositorios y Unit of Work
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -29,6 +41,16 @@ builder.Services.AddScoped<IEventosPartidosService, EventosPartidosService>();
 builder.Services.AddScoped<IEstadisticasJugadoresService, EstadisticasJugadoresService>();
 builder.Services.AddScoped<IClasificacionesService, ClasificacionesService>();
 builder.Services.AddScoped<ISyncLogsService, SyncLogsService>();
+
+// Servicio para consumir API Football
+builder.Services.AddHttpClient<IApiFootball, ApiFootballService>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["ApiFootball:BaseUrl"]!);
+    client.DefaultRequestHeaders.Add("x-apisports-key", builder.Configuration["ApiFootball:ApiKey"]);
+});
+
+// Sincronización automática al arrancar (respeta cooldowns)
+builder.Services.AddHostedService<BackgroundSyncService>();
 
 // AutoMapper - registrar perfiles automáticamente
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
@@ -101,6 +123,7 @@ app.UseSwaggerUI(c =>
 });
 
 app.UseHttpsRedirection();
+app.UseCors("Angular");
 app.UseAuthorization();
 app.MapControllers();
 

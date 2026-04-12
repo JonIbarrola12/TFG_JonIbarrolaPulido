@@ -1,8 +1,7 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using SportsHome.Core.Entities;
-using SportsHome.Core.Interfaces.Services;
+using Microsoft.EntityFrameworkCore;
+using SportsHome.IL.Repository.EF;
 using SportsHome.UI.Controllers.Resources;
 
 namespace SportsHome.UI.Controllers
@@ -12,86 +11,95 @@ namespace SportsHome.UI.Controllers
     [ApiController]
     public class PartidosController : ControllerBase
     {
-        private readonly ILogger _logger;
-        private readonly IPartidosService _partidoService;
+        private readonly SportsHomeContext _context;
         private readonly IMapper _mapper;
 
-        public PartidosController(ILogger<PartidosController> logger, IMapper mapper, IPartidosService partidosService)
+        public PartidosController(IMapper mapper, SportsHomeContext context)
         {
-            _logger = logger;
             _mapper = mapper;
-            _partidoService = partidosService;
+            _context = context;
         }
 
-        // GET /api/partidos
-        [HttpGet("/api/partidos")]
-        public async Task<IActionResult> Get()
+        // GET /api/partidos/5
+        [HttpGet("{partidoId}")]
+        public async Task<IActionResult> GetById(int partidoId)
         {
-            IEnumerable<Partidos> partidos = await _partidoService.GetListAsync();
-            IEnumerable<PartidosResource> partidosResources = _mapper.Map<IEnumerable<PartidosResource>>(partidos);
-            return Ok(partidosResources);
+            var partido = await _context.Partidos
+                .Include(p => p.EquipoLocal)
+                .Include(p => p.EquipoVisitante)
+                .Include(p => p.Liga)
+                .FirstOrDefaultAsync(p => p.PartidoId == partidoId);
+
+            if (partido == null) return NotFound();
+
+            return Ok(_mapper.Map<PartidosResource>(partido));
         }
 
-        // GET /api/partidos/{partidoId}
-        [HttpGet("/api/partidos/{partidoId}")]
-        public async Task<IActionResult> Get([FromRoute] int partidoId)
+        // GET /api/partidos/jornada?ligaId=5&temporada=2024&ronda=Regular Season - 10
+        [HttpGet("jornada")]
+        public async Task<IActionResult> GetByJornada([FromQuery] int ligaId, [FromQuery] int? temporada, [FromQuery] string ronda)
         {
-            Partidos? partido = await _partidoService.GetAsync(partidoId);
-            if (partido == null)
-                return NotFound();
+            var temp = temporada ?? DateTime.UtcNow.Year - 1;
 
-            PartidosResource partidosResource = _mapper.Map<PartidosResource>(partido);
-            return Ok(partidosResource);
+            var query = _context.Partidos
+                .Include(p => p.EquipoLocal)
+                .Include(p => p.EquipoVisitante)
+                .Where(p => p.LigaId == ligaId && p.Temporada == temp);
+
+            if (!string.IsNullOrWhiteSpace(ronda))
+                query = query.Where(p => p.Ronda == ronda);
+
+            var partidos = await query
+                .OrderBy(p => p.Fecha)
+                .ToListAsync();
+
+            return Ok(_mapper.Map<List<PartidosResource>>(partidos));
         }
 
-        // POST /api/partidos
-        [HttpPost("/api/partidos")]
-        public async Task<IActionResult> Post([FromBody] PartidosResource partido)
+        // GET /api/partidos/proximos?ligaId=5&cantidad=10
+        [HttpGet("proximos")]
+        public async Task<IActionResult> GetProximos([FromQuery] int? ligaId, [FromQuery] int cantidad = 10)
         {
-            if (partido == null)
-                return BadRequest();
+            var ahora = DateTime.UtcNow;
 
-            Partidos? p = await _partidoService.AddAsync(_mapper.Map<Partidos>(partido));
-            PartidosResource partidosResource = _mapper.Map<PartidosResource>(p);
-            return CreatedAtAction(nameof(Get), new { partidoId = partidosResource.PartidoId }, partidosResource);
+            var query = _context.Partidos
+                .Include(p => p.EquipoLocal)
+                .Include(p => p.EquipoVisitante)
+                .Include(p => p.Liga)
+                .Where(p => p.Fecha > ahora);
+
+            if (ligaId.HasValue)
+                query = query.Where(p => p.LigaId == ligaId.Value);
+
+            var partidos = await query
+                .OrderBy(p => p.Fecha)
+                .Take(cantidad)
+                .ToListAsync();
+
+            return Ok(_mapper.Map<List<PartidosResource>>(partidos));
         }
 
-        // PUT /api/partidos/{partidoId}
-        [HttpPut("/api/partidos/{partidoId}")]
-        public async Task<IActionResult> Put([FromRoute] int partidoId, [FromBody] PartidosResource partidoResource)
+        // GET /api/partidos/ultimos?ligaId=5&cantidad=10
+        [HttpGet("ultimos")]
+        public async Task<IActionResult> GetUltimos([FromQuery] int? ligaId, [FromQuery] int cantidad = 10)
         {
-            if (partidoResource == null)
-                return BadRequest();
+            var ahora = DateTime.UtcNow;
 
+            var query = _context.Partidos
+                .Include(p => p.EquipoLocal)
+                .Include(p => p.EquipoVisitante)
+                .Include(p => p.Liga)
+                .Where(p => p.Fecha <= ahora && p.Estado == "FT");
 
-            Partidos? partidoOld = await _partidoService.GetAsync(partidoId);
-            if (partidoOld == null)
-                return NotFound();
+            if (ligaId.HasValue)
+                query = query.Where(p => p.LigaId == ligaId.Value);
 
+            var partidos = await query
+                .OrderByDescending(p => p.Fecha)
+                .Take(cantidad)
+                .ToListAsync();
 
-            await _partidoService.Update(partidoOld, _mapper.Map<Partidos>(partidoResource));
-            return NoContent();
-        }
-
-        // DELETE /api/partidos/{partidoId}
-        [HttpDelete("/api/partidos/{partidoId}")]
-        public async Task<IActionResult> Delete([FromRoute] int partidoId)
-        {
-            Partidos? partido = await _partidoService.GetAsync(partidoId);
-
-            if (partido == null)
-                return NotFound();
-            try
-            {
-                await _partidoService.DeleteAsync(partido);
-                return Ok();
-            }
-            catch (ArgumentException e)
-            {
-                return BadRequest(new { Error = e.Message });
-            }
-
+            return Ok(_mapper.Map<List<PartidosResource>>(partidos));
         }
     }
 }
-

@@ -9,6 +9,7 @@ namespace SportsHome.UI.Controllers.Resources
     public class JugadoresResource
     {
         public int JugadorId { get; set; }
+        public int ExternalId { get; set; }
         public string Nombre { get; set; }
         public string NombrePropio { get; set; }
         public string Apellido { get; set; }

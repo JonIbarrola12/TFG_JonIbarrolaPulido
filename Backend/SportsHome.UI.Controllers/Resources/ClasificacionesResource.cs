@@ -1,11 +1,4 @@
-﻿using SportsHome.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SportsHome.UI.Controllers.Resources
+﻿namespace SportsHome.UI.Controllers.Resources
 {
     public class ClasificacionesResource
     {
@@ -21,7 +14,7 @@ namespace SportsHome.UI.Controllers.Resources
         public int GolesEnContra { get; set; }
         public int Puntos { get; set; }
         public int Posicion { get; set; }
-        public Ligas Liga { get; set; }
-        public Equipos Equipo { get; set; }
+        public LigasResource Liga { get; set; }
+        public EquiposResource Equipo { get; set; }
     }
 }

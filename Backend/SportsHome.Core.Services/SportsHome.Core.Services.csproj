@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SportsHome.Core.Interfaces\SportsHome.Core.Interfaces.csproj" />
+    <ProjectReference Include="..\SportsHome.IL.Repository.EF\SportsHome.IL.Repository.EF.csproj" />
   </ItemGroup>
 
 </Project>
