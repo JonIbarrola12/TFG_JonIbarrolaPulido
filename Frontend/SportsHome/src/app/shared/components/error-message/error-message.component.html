@@ -1,0 +1,15 @@
+<div class="error-message" [class]="'error-message--' + type()">
+  <span class="error-message__icon">
+    @switch (type()) {
+      @case ('error') { ❌ }
+      @case ('warning') { ⚠️ }
+      @case ('info') { ℹ️ }
+    }
+  </span>
+  <p class="error-message__text">{{ message() }}</p>
+  @if (retryable()) {
+    <button class="btn btn--sm btn--outline" (click)="onRetry()">
+      Reintentar
+    </button>
+  }
+</div>

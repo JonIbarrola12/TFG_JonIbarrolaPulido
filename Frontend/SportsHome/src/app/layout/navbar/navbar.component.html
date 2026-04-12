@@ -1,0 +1,51 @@
+<nav class="navbar">
+  <div class="navbar__container">
+    <!-- Logo -->
+    <a class="navbar__brand" routerLink="/" (click)="cerrarMenu()">
+      <span class="navbar__logo">⚽</span>
+      <span class="navbar__title">SportsHome</span>
+    </a>
+
+    <!-- Nav links (escritorio) -->
+    <ul class="navbar__links" [class.navbar__links--open]="menuAbierto()">
+      <li>
+        <a routerLink="/ligas" routerLinkActive="navbar__link--active" class="navbar__link" (click)="cerrarMenu()">
+          Ligas
+        </a>
+      </li>
+      <li>
+        <a routerLink="/equipos" routerLinkActive="navbar__link--active" class="navbar__link" (click)="cerrarMenu()">
+          Equipos
+        </a>
+      </li>
+      <li>
+        <a routerLink="/jugadores" routerLinkActive="navbar__link--active" class="navbar__link" (click)="cerrarMenu()">
+          Jugadores
+        </a>
+      </li>
+      <li>
+        <a routerLink="/partidos" routerLinkActive="navbar__link--active" class="navbar__link" (click)="cerrarMenu()">
+          Partidos
+        </a>
+      </li>
+    </ul>
+
+    <!-- Acciones de autenticación -->
+    <div class="navbar__actions">
+      @if (servicioAuth.estaAutenticado()) {
+        <span class="navbar__user">{{ servicioAuth.usuarioActual()?.nombreUsuario }}</span>
+        <button class="btn btn--outline" (click)="cerrarSesion()">Cerrar sesión</button>
+      } @else {
+        <a routerLink="/auth/login" class="btn btn--ghost" (click)="cerrarMenu()">Iniciar sesión</a>
+        <a routerLink="/auth/registro" class="btn btn--primary" (click)="cerrarMenu()">Registrarse</a>
+      }
+    </div>
+
+    <!-- Menú móvil -->
+    <button class="navbar__burger" (click)="alternarMenu()" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>

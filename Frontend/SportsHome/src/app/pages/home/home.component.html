@@ -1,0 +1,22 @@
+<section class="home">
+  <div class="home__hero">
+    <h1 class="home__title">Estadísticas de<br><span>Fútbol en Vivo</span></h1>
+    <p class="home__subtitle">
+      Explora ligas, equipos, jugadores y partidos con datos actualizados en tiempo real.
+    </p>
+    <div class="home__cta">
+      <a routerLink="/ligas" class="btn btn--primary btn--lg">Ver Ligas</a>
+      <a routerLink="/partidos" class="btn btn--outline btn--lg">Partidos de Hoy</a>
+    </div>
+  </div>
+
+  <div class="home__grid">
+    @for (seccion of secciones; track seccion.ruta) {
+      <a [routerLink]="seccion.ruta" class="home__section-card">
+        <span class="home__section-icon">{{ seccion.icono }}</span>
+        <h3 class="home__section-title">{{ seccion.titulo }}</h3>
+        <p class="home__section-desc">{{ seccion.descripcion }}</p>
+      </a>
+    }
+  </div>
+</section>
