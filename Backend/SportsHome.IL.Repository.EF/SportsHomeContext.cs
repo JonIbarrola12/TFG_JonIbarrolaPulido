@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SportsHome.Core.Entities;
 using SportsHome.IL.Repository.EF.EntityConfigurations;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SportsHome.IL.Repository.EF
 {
@@ -37,6 +40,25 @@ namespace SportsHome.IL.Repository.EF
             modelBuilder.ApplyConfiguration(new ClasificacionesConfiguration());
             modelBuilder.ApplyConfiguration(new SyncLogsConfiguration());
             modelBuilder.ApplyConfiguration(new UsuariosConfiguration());
+        }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            // Force Temporada = 2024 for all added/modified entities that have a Temporada property
+            const int temporadaForzada = 2024;
+            var entries = ChangeTracker.Entries()
+                .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
+
+            foreach (var entry in entries)
+            {
+                var prop = entry.Properties.FirstOrDefault(p => p.Metadata.Name == "Temporada");
+                if (prop != null)
+                {
+                    prop.CurrentValue = temporadaForzada;
+                }
+            }
+
+            return await base.SaveChangesAsync(cancellationToken);
         }
     }
 }

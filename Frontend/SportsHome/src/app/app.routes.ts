@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { guardiaAutenticacion, guardiaInvitado } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -22,16 +21,15 @@ export const routes: Routes = [
     path: 'partidos',
     loadChildren: () => import('./features/matches/matches.routes').then(m => m.MATCHES_ROUTES),
   },
-  {
-    path: 'auth',
-    canActivate: [guardiaInvitado],
-    loadChildren: () => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES),
-  },
-  {
-    path: 'perfil',
-    canActivate: [guardiaAutenticacion],
-    loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent),
-  },
+  // Auth y perfil deshabilitados hasta que exista la tabla de usuarios en BD
+  // {
+  //   path: 'auth',
+  //   loadChildren: () => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES),
+  // },
+  // {
+  //   path: 'perfil',
+  //   loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent),
+  // },
   {
     path: '404',
     loadComponent: () => import('./pages/not-found/not-found.component').then(m => m.NotFoundComponent),

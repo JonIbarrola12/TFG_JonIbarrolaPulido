@@ -60,7 +60,7 @@ namespace SportsHome.UI.Controllers
         [HttpGet("{ligaId}/equipos")]
         public async Task<IActionResult> GetEquipos(int ligaId, [FromQuery] int? temporada)
         {
-            var temp = temporada ?? DateTime.UtcNow.Year - 1;
+            var temp = temporada ?? 2024;
 
             var liga = await _context.Ligas.FirstOrDefaultAsync(l => l.LigaId == ligaId);
             if (liga == null) return NotFound();
@@ -94,7 +94,7 @@ namespace SportsHome.UI.Controllers
         [HttpGet("{ligaId}/clasificacion")]
         public async Task<IActionResult> GetClasificacion(int ligaId, [FromQuery] int? temporada)
         {
-            var temp = temporada ?? DateTime.UtcNow.Year - 1;
+            var temp = temporada ?? 2024;
 
             var clasificacion = await _context.Clasificaciones
                 .Include(c => c.Equipo)
@@ -112,7 +112,7 @@ namespace SportsHome.UI.Controllers
         [HttpGet("{ligaId}/partidos")]
         public async Task<IActionResult> GetPartidos(int ligaId, [FromQuery] int? temporada)
         {
-            var temp = temporada ?? DateTime.UtcNow.Year - 1;
+            var temp = temporada ?? 2024;
 
             var partidos = await _context.Partidos
                 .Include(p => p.EquipoLocal)
@@ -129,7 +129,7 @@ namespace SportsHome.UI.Controllers
         [HttpGet("{ligaId}/goleadores")]
         public async Task<IActionResult> GetGoleadores(int ligaId, [FromQuery] int? temporada, [FromQuery] int top = 20)
         {
-            var temp = temporada ?? DateTime.UtcNow.Year - 1;
+            var temp = temporada ?? 2024;
 
             var goleadores = await _context.EstadisticasJugadores
                 .Include(e => e.Jugador)

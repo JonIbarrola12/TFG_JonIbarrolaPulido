@@ -39,7 +39,7 @@ namespace SportsHome.UI.Controllers
         [HttpGet("jornada")]
         public async Task<IActionResult> GetByJornada([FromQuery] int ligaId, [FromQuery] int? temporada, [FromQuery] string ronda)
         {
-            var temp = temporada ?? DateTime.UtcNow.Year - 1;
+            var temp = temporada ?? 2024;
 
             var query = _context.Partidos
                 .Include(p => p.EquipoLocal)

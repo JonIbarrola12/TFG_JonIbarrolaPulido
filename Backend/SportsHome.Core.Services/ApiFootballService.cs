@@ -123,7 +123,7 @@ namespace SportsHome.Core.Services
         public async Task<List<Equipos>> GetEquiposAsync(int leagueId, int season)
         {
             var response = await GetWithRateLimitAsync<ApiResponse<List<TeamWrapper>>>(
-                $"teams?league={leagueId}&season={season}");
+                $"teams?league={leagueId}&season=2024");
             ThrowIfApiError(response, "teams");
             var wrappers = response?.Response ?? new List<TeamWrapper>();
 
@@ -158,8 +158,8 @@ namespace SportsHome.Core.Services
             while (page <= totalPages)
             {
                 var response = await GetWithRateLimitAsync<ApiResponse<List<PlayerStatsWrapper>>>(
-                    $"players?team={teamId}&season={season}&page={page}");
-                ThrowIfApiError(response, "players");
+                    $"players?team={teamId}&season=2024&page={page}");
+                    ThrowIfApiError(response, "players");
                 allWrappers.AddRange(response?.Response ?? new List<PlayerStatsWrapper>());
 
                 if (response?.Paging != null)
@@ -216,7 +216,7 @@ namespace SportsHome.Core.Services
         public async Task<List<Partidos>> GetPartidosAsync(int leagueId, int season)
         {
             var response = await GetWithRateLimitAsync<ApiResponse<List<FixtureWrapper>>>(
-                $"fixtures?league={leagueId}&season={season}");
+                $"fixtures?league={leagueId}&season=2024");
             ThrowIfApiError(response, "fixtures");
             var wrappers = response?.Response ?? new List<FixtureWrapper>();
 
@@ -276,7 +276,7 @@ namespace SportsHome.Core.Services
         public async Task<List<Clasificaciones>> GetClasificacionAsync(int leagueId, int season)
         {
             var response = await GetWithRateLimitAsync<ApiResponse<List<StandingWrapper>>>(
-                $"standings?league={leagueId}&season={season}");
+                $"standings?league={leagueId}&season=2024");
             ThrowIfApiError(response, "standings");
             var wrappers = response?.Response ?? new List<StandingWrapper>();
 

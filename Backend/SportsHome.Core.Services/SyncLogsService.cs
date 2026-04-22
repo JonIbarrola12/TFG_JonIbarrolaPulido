@@ -123,7 +123,7 @@ namespace SportsHome.Core.Services
                 .Where(l => LigasPermitidas.Contains(l.ExternalId))
                 .ToListAsync();
 
-            var temporada = DateTime.UtcNow.Year - 1; // temporada actual (ej: 2025 -> 2024)
+            const int temporada = 2024; // Forzar temporada 2024 para todas las llamadas al API
 
             // FASE 1: Datos estructurales (equipos + partidos + clasificaciones)
             // Coste: ~16 llamadas para las 5 ligas (si no estan en cooldown)
@@ -679,5 +679,6 @@ namespace SportsHome.Core.Services
 
             await _context.SaveChangesAsync();
         }
+
     }
 }

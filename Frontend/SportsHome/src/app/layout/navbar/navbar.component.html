@@ -30,14 +30,11 @@
       </li>
     </ul>
 
-    <!-- Acciones de autenticación -->
+    <!-- Acciones (auth deshabilitado hasta que exista la tabla de usuarios) -->
     <div class="navbar__actions">
-      @if (servicioAuth.estaAutenticado()) {
-        <span class="navbar__user">{{ servicioAuth.usuarioActual()?.nombreUsuario }}</span>
+      @if (estaAutenticado()) {
+        <span class="navbar__user">{{ usuarioActual()?.nombreUsuario }}</span>
         <button class="btn btn--outline" (click)="cerrarSesion()">Cerrar sesión</button>
-      } @else {
-        <a routerLink="/auth/login" class="btn btn--ghost" (click)="cerrarMenu()">Iniciar sesión</a>
-        <a routerLink="/auth/registro" class="btn btn--primary" (click)="cerrarMenu()">Registrarse</a>
       }
     </div>
 

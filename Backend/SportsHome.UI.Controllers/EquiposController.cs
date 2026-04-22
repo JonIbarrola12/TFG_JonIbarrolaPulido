@@ -44,7 +44,7 @@ namespace SportsHome.UI.Controllers
         [HttpGet("{equipoId}/jugadores")]
         public async Task<IActionResult> GetJugadores(int equipoId, [FromQuery] int? temporada)
         {
-            var temp = temporada ?? DateTime.UtcNow.Year - 1;
+            var temp = temporada ?? 2024;
 
             var equipo = await _context.Equipos.FindAsync(equipoId);
             if (equipo == null) return NotFound();
@@ -63,7 +63,7 @@ namespace SportsHome.UI.Controllers
         [HttpGet("{equipoId}/partidos")]
         public async Task<IActionResult> GetPartidos(int equipoId, [FromQuery] int? temporada)
         {
-            var temp = temporada ?? DateTime.UtcNow.Year - 1;
+            var temp = temporada ?? 2024;
 
             var equipo = await _context.Equipos.FindAsync(equipoId);
             if (equipo == null) return NotFound();
@@ -84,7 +84,7 @@ namespace SportsHome.UI.Controllers
         [HttpGet("{equipoId}/estadisticas")]
         public async Task<IActionResult> GetEstadisticas(int equipoId, [FromQuery] int? temporada)
         {
-            var temp = temporada ?? DateTime.UtcNow.Year - 1;
+            var temp = temporada ?? 2024;
 
             var stats = await _context.EstadisticasJugadores
                 .Include(e => e.Jugador)
