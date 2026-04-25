@@ -1,9 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { ServicioJugadores } from '../players.service';
 
 @Component({
   selector: 'app-player-detail',
   standalone: true,
-  template: '<div class="page-placeholder"><h2>Detalle de Jugador</h2><p>Próximamente...</p></div>',
-  styles: ['.page-placeholder{padding:3rem 1.5rem;text-align:center;color:var(--color-text-secondary)}h2{font-size:1.75rem;color:var(--color-text-primary);margin-bottom:.5rem}']
+  templateUrl: './player-detail.component.html',
+  styleUrls: ['./player-detail.component.css']
 })
-export class PlayerDetailComponent {}
+export class PlayerDetailComponent implements OnInit {
+  private readonly servicioJugadores = inject(ServicioJugadores);
+
+  ngOnInit(): void {
+    void this.servicioJugadores;
+  }
+}

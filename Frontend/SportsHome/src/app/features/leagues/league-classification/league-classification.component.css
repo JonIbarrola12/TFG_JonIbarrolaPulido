@@ -1,0 +1,33 @@
+.page-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+.page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.back-link {
+  font-size: 0.95rem;
+  color: #0f4c81;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.75rem;
+  color: #1f2937;
+}
+
+.page-text {
+  color: #475569;
+  line-height: 1.6;
+}

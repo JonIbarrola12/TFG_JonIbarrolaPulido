@@ -9,11 +9,11 @@ export const ENDPOINTS_API = {
   },
   // Ligas
   LIGAS: {
-    BASE: '/ligas',
-    POR_ID: (id: number) => `/ligas/${id}`,
-    CLASIFICACION: (id: number) => `/ligas/${id}/clasificacion`,
-    PARTIDOS: (id: number) => `/ligas/${id}/partidos`,
-    EQUIPOS: (id: number) => `/ligas/${id}/equipos`,
+    BASE: '/Ligas',
+    POR_ID: (id: number) => `/Ligas/${id}`,
+    CLASIFICACION: (id: number) => `/Ligas/${id}/clasificacion`,
+    PARTIDOS: (id: number) => `/Ligas/${id}/partidos`,
+    EQUIPOS: (id: number) => `/Ligas/${id}/equipos`,
   },
   // Equipos
   EQUIPOS: {

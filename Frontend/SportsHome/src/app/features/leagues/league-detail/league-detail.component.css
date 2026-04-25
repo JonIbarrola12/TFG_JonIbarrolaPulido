@@ -1,0 +1,253 @@
+.page-wrapper {
+  padding: 2rem 1.5rem;
+  background: #0b1f3a; /* 🌌 fondo azul oscuro global */
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+/* ================= HEADER ================= */
+
+.page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.back-link {
+  display: inline-block;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.page-header h2 {
+  margin: 0;
+  font-size: 2rem;
+  color: var(--color-text-primary);
+}
+
+/* ================= LEAGUE CARD ================= */
+
+.league-summary-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.league-detail-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 1rem;
+  background: rgba(255,255,255,0.05);
+  object-fit: contain;
+  padding: 0.75rem;
+}
+
+.league-summary-info h3 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: var(--color-text-primary);
+}
+
+.league-country {
+  display: inline-block;
+  margin-top: 0.35rem;
+  color: var(--color-text-secondary);
+}
+
+/* ================= ACTIONS ================= */
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.action-button {
+  border: none;
+  background: var(--color-primary);
+  color: white;
+  padding: 0.95rem 1.4rem;
+  border-radius: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.action-button:hover,
+.action-button:focus-visible {
+  background: var(--color-primary-dark);
+}
+
+/* ================= STATUS ================= */
+
+.status-message,
+.error-message {
+  color: var(--color-text-secondary);
+  margin: 1rem 0;
+}
+
+.error-message {
+  color: var(--color-error);
+}
+
+/* ================= GRID ================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  align-items: stretch; 
+}
+
+.section-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 160px;
+
+  padding: 1.5rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+
+  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+  overflow: hidden;
+}
+
+.section-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  border-color: var(--color-primary);
+}
+
+.section-icon {
+  font-size: 2rem;
+}
+
+.section-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.section-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ================= STANDINGS TABLE ================= */
+
+.standings-table {
+  margin-top: 20px;
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.table-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--color-text-primary);
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ================= ROWS ================= */
+
+.table-row {
+  display: grid;
+  grid-template-columns: 50px 2fr repeat(8, 60px);
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.04);
+  transition: all 0.2s ease;
+  color: var(--color-text-primary);
+}
+
+.table-row:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* HEADER */
+.header {
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: bold;
+}
+
+/* COLUMNS */
+.col {
+  font-size: 14px;
+  color: var(--color-text-primary);
+}
+
+.position {
+  font-weight: 600;
+}
+
+/* TEAM */
+.team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.team-logo {
+  width: 22px;
+  height: 22px;
+}
+
+/* ================= COMPETITION COLORS ================= */
+
+/* 🟦 Champions League */
+.champions {
+  border-left: 4px solid #1e88e5;
+  background: rgba(30, 136, 229, 0.12);
+}
+
+/* 🟧 Europa League */
+.europa {
+  border-left: 4px solid #fb8c00;
+  background: rgba(251, 140, 0, 0.12);
+}
+
+/* 🟩 Conference League */
+.conference {
+  border-left: 4px solid #43a047;
+  background: rgba(67, 160, 71, 0.12);
+}
+
+/* 🔴 Relegation */
+.relegation {
+  border-left: 4px solid #e53935;
+  background: rgba(229, 57, 53, 0.12);
+}
+
+/* ================= EMPTY STATE ================= */
+
+.empty-state {
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 20px;
+}

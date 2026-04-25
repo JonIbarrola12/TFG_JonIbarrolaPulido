@@ -1,0 +1,46 @@
+<div class="page-wrapper">
+  <header class="page-header">
+    <h2>Ligas</h2>
+    <p>Explora las competiciones disponibles y encuentra la liga que te interesa.</p>
+  </header>
+    @if (ligas.length > 0) {
+      <section class="leagues-grid">
+        @for (liga of ligas; track liga.id) {
+          <a [routerLink]="['/ligas', liga.id]" class="league-card league-card-link">
+            <div class="league-header">
+              @if (liga.urlLogo) {
+                <img [src]="liga.urlLogo" [alt]="liga.nombre" class="league-logo" />
+              }
+              <div>
+                <h3>{{ liga.nombre }}</h3>
+                <span class="league-country">{{ liga.pais }}</span>
+              </div>
+            </div>
+
+            @if (liga.externalId || liga.temporada || liga.activa !== undefined) {
+              <div class="league-info">
+                @if (liga.temporada) {
+                  <p><strong>Temporada:</strong> {{ liga.temporada }}</p>
+                }
+                @if (liga.activa !== undefined) {
+                  <p><strong>Estado:</strong> {{ liga.activa ? 'Activa' : 'Inactiva' }}</p>
+                }
+              </div>
+            }
+
+            <div class="league-meta">
+              @if (liga.creadaEn) {
+                <span>Creada: {{ liga.creadaEn | date:'mediumDate' }}</span>
+              }
+            </div>
+          </a>
+        }
+      </section>
+    } @else {
+      <p class="empty-message">No hay ligas disponibles.</p>
+    }
+
+  @if (errorMessage) {
+    <p class="error-message">{{ errorMessage }}</p>
+  }
+</div>

@@ -1,0 +1,115 @@
+<div class="page-wrapper">
+  <header class="page-header">
+    <a class="back-link" [routerLink]="['/ligas']">← Volver a ligas</a>
+    <h2>Detalle de liga</h2>
+  </header>
+
+  @if (cargando) {
+    <p class="status-message">Cargando datos...</p>
+  } @else {
+    @if (errorMessage) {
+      <p class="error-message">{{ errorMessage }}</p>
+    } @else {
+      <section class="league-summary-card">
+        @if (liga?.urlLogo) {
+          <img [src]="liga?.urlLogo" [alt]="liga?.nombre" class="league-detail-logo" />
+        }
+        <div class="league-summary-info">
+          <h3>{{ liga?.nombre }}</h3>
+          <span class="league-country">{{ liga?.pais }}</span>
+          @if(liga?.nombre === 'La Liga') {
+          <div>
+            La Liga es la principal competición de fútbol en España, donde 20 equipos juegan una temporada de 38 partidos (ida y vuelta) sumando 3 puntos por victoria, 1 por empate y 0 por derrota; al final, el equipo con más puntos se proclama campeón, con clubes históricos como el Real Madrid y el FC Barcelona destacando entre los más exitosos, mientras que los cuatro primeros clasifican a competiciones europeas y los tres últimos descienden a segunda división.
+          </div>
+          }
+          @else if (liga?.nombre == "Ligue 1") {
+          <div>
+            La Ligue 1 es la máxima competición de fútbol en Francia, donde 18 equipos compiten cada temporada por el título, con un sistema de puntos similar al de otras ligas europeas; el club más dominante en los últimos años ha sido el Paris Saint-Germain, que ha ganado la mayoría de los campeonatos recientes y suele destacar por su gran inversión y estrellas internacionales.
+          </div>
+          }
+          @else if (liga?.nombre == "Premier League") {
+          <div>
+            La Premier League es la liga de fútbol más seguida del mundo, con 20 equipos en Inglaterra que juegan 38 partidos por temporada, conocida por su ritmo rápido y alta competitividad; clubes como el Manchester City, el Manchester United y el Liverpool FC son algunos de los más destacados e históricos.
+          </div>
+          }
+          @else if (liga?.nombre == "Serie A") {
+          <div>
+            La Serie A es la principal liga de Italia, con 20 equipos que compiten en una temporada de 38 jornadas, conocida históricamente por su enfoque táctico y defensivo; equipos como el Juventus FC, el AC Milan y el Inter Milan son algunos de los más importantes y exitosos del país.
+          </div>
+          }
+          @else if (liga?.nombre == "Bundesliga") {
+          <div>
+            La Bundesliga es la primera división del fútbol alemán, formada por 18 equipos que juegan una temporada de 34 partidos, destacando por su gran afluencia de público y desarrollo de jóvenes talentos; el club más dominante ha sido el Bayern Munich, que ha ganado la mayoría de títulos en la última década.
+          </div>
+          }
+        </div>
+      </section>
+      @if (clasificacionVista.length) {
+        <section class="standings-table">
+          <h3 class="table-title">Clasificación </h3>
+
+          <div class="table">
+
+            <!-- Header -->
+            <div class="table-row header">
+              <div class="col position">#</div>
+              <div class="col team">Equipo</div>
+              <div class="col">Pts</div>
+              <div class="col">PJ</div>
+              <div class="col">V</div>
+              <div class="col">E</div>
+              <div class="col">D</div>
+              <div class="col">GF</div>
+              <div class="col">GC</div>
+              <div class="col">DG</div>
+            </div>
+
+            <!-- Rows -->
+            @for (team of clasificacionVista; track team.posicion) {
+
+              <div class="table-row"
+
+                [class.champions]="team.posicion <= 4"
+                [class.europa]="team.posicion === 5 || team.posicion === 6"
+                [class.conference]="team.posicion === 7"
+                [class.relegation]="team.posicion > clasificacionVista.length - 3">
+
+                <div class="col position">{{ team.posicion }}</div>
+
+                <div class="col team">
+                  @if (team.logo) {
+                    <img class="team-logo" [src]="team.logo" />
+                  }
+                  <span>{{ team.nombre }}</span>
+                </div>
+
+                <div class="col"><b>{{ team.puntos }}</b></div>
+                <div class="col">{{ team.jugados }}</div>
+                <div class="col">{{ team.ganados }}</div>
+                <div class="col">{{ team.empatados }}</div>
+                <div class="col">{{ team.perdidos }}</div>
+                <div class="col">{{ team.golesFavor }}</div>
+                <div class="col">{{ team.golesContra }}</div>
+                <div class="col"><b>{{ team.diferenciaGoles }}</b></div>
+              </div>
+            }
+          </div>
+        </section>
+      } @else {
+        <p class="empty-state">No standings available</p>
+      }
+      <br>
+      <br>
+
+      <div class="detail-actions">
+        @for (seccion of secciones; track seccion.ruta) {
+          <a [routerLink]="seccion.ruta" class="section-card">
+            <span class="section-icon">{{ seccion.icono }}</span>
+            <h3 class="section-title">{{ seccion.titulo }}</h3>
+            <p class="section-desc">{{ seccion.descripcion }}</p>
+          </a>
+        }
+      </div>
+    }
+  }
+</div>

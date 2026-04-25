@@ -1,10 +1,11 @@
 export interface Liga {
-  id: number;
+  id?: number;
+  externalId?: number;
   nombre: string;
   pais: string;
   urlLogo?: string;
-  temporada: number;
-  activa: boolean;
+  temporada?: number;
+  activa?: boolean;
   creadaEn?: string;
   actualizadaEn?: string;
 }
