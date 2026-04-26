@@ -107,4 +107,20 @@ export class ServicioLigas {
         })
       );
     }
+    obtenerPartidosPorLigaId(id: number): Observable<any[]> {
+      return this.servicioApi
+      .obtener<RespuestaApi<any> | any[]>(ENDPOINTS_API.LIGAS.PARTIDOS(id))
+      .pipe(
+        map((respuesta) => {
+          if (Array.isArray(respuesta)) {
+            return respuesta;
+          }
+
+          if (respuesta && 'datos' in respuesta && Array.isArray(respuesta.datos)) {
+            return respuesta.datos;
+          }
+          return [];
+        })
+      );
+    }
 }

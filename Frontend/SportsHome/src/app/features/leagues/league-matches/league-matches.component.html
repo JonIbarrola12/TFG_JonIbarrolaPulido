@@ -1,8 +1,86 @@
 <div class="page-wrapper">
   <header class="page-header">
     <a class="back-link" [routerLink]="['/ligas', ligaId]">← Volver a liga</a>
-    <h2>Próximos partidos de la liga {{ ligaId }}</h2>
+    <h2>Partidos de la {{ liga?.nombre }}</h2>
   </header>
 
-  <p class="page-text">Esta vista mostrará los partidos de la liga, con resultados, fecha y equipo visitante/local.</p>
+   @if (cargando) {
+    <p class="status-message">Cargando partidos...</p>
+  } @else if (errorMessage) {
+    <p class="error-message">{{ errorMessage }}</p>
+  } @else {
+
+    @if (partidos.length === 0) {
+      <p class="empty-state">No hay partidos disponibles.</p>
+    } @else {
+
+      <div class="matches-list">
+
+        @for (partido of partidosPaginados; track partido.PartidoId){
+
+          <div class="match-card">
+
+            <!-- Fecha + estado -->
+            <div class="match-header">
+              <span>{{ partido.Ronda }}</span>
+              <span class="match-status">{{ partido.Estado }}</span>
+              <span>{{ partido.Fecha | date:'short' }}</span>
+            </div>
+
+            <!-- Equipos -->
+            <div class="match-teams">
+
+              <!-- LOCAL -->
+              <div class="team-local">
+                <img [src]="partido.EquipoLocal.Logo" />
+                <span>{{ partido.EquipoLocal.Nombre }}</span>
+              </div>
+
+              <!-- RESULTADO -->
+              <div class="score">
+                {{ partido.GolesLocal }} - {{ partido.GolesVisitante }}
+              </div>
+
+              <!-- VISITANTE -->
+              <div class="team-visitor">
+                <img [src]="partido.EquipoVisitante.Logo" />
+                <span>{{ partido.EquipoVisitante.Nombre }}</span>
+              </div>
+
+            </div>
+
+            <!-- INFO -->
+            <div class="match-footer">
+              <span>Árbitro: {{ partido.Arbitro }}</span>
+              <span>Estadio: {{ partido.EquipoLocal.NombreEstadio }}</span>
+              <span>Temporada: {{ partido.Temporada }}</span>
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    }
+
+  }
+  <div class="pagination">
+
+    <button
+      (click)="cambiarPagina(paginaActual - 1)"
+      [disabled]="paginaActual === 1">
+      ◀
+    </button>
+
+    <span>Página {{ paginaActual }}</span>
+
+    <button
+      (click)="cambiarPagina(paginaActual + 1)"
+      [disabled]="paginaActual * tamanoPagina >= partidos.length">
+      ▶
+    </button>
+
+  </div>
+
 </div>

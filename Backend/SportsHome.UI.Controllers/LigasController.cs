@@ -119,7 +119,7 @@ namespace SportsHome.UI.Controllers
                 .Include(p => p.EquipoVisitante)
                 .Include(p => p.Liga)
                 .Where(p => p.LigaId == ligaId && p.Temporada == temp)
-                .OrderByDescending(p => p.Fecha)
+                .OrderBy(p => p.Fecha)
                 .ToListAsync();
 
             return Ok(_mapper.Map<List<PartidosResource>>(partidos));
