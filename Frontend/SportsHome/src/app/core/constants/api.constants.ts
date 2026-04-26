@@ -17,11 +17,11 @@ export const ENDPOINTS_API = {
   },
   // Equipos
   EQUIPOS: {
-    BASE: '/equipos',
-    POR_ID: (id: number) => `/equipos/${id}`,
-    JUGADORES: (id: number) => `/equipos/${id}/jugadores`,
-    ESTADISTICAS: (id: number) => `/equipos/${id}/estadisticas`,
-    PARTIDOS: (id: number) => `/equipos/${id}/partidos`,
+    BASE: '/Equipos',
+    POR_ID: (id: number) => `/Equipos/${id}`,
+    JUGADORES: (id: number) => `/Equipos/${id}/jugadores`,
+    ESTADISTICAS: (id: number) => `/Equipos/${id}/estadisticas`,
+    PARTIDOS: (id: number) => `/Equipos/${id}/partidos`,
   },
   // Jugadores
   JUGADORES: {

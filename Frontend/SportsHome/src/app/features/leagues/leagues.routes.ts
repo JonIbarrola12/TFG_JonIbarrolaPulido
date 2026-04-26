@@ -10,8 +10,8 @@ export const LEAGUES_ROUTES: Routes = [
     loadComponent: () => import('./league-teams/league-teams.component').then(m => m.LeagueTeamsComponent),
   },
   {
-    path: ':id/clasificacion',
-    loadComponent: () => import('./league-classification/league-classification.component').then(m => m.LeagueClassificationComponent),
+    path: ':id/estadisticas',
+    loadComponent: () => import('./league-stadistics/league-stadistics.component').then(m => m.LeagueStadisticsComponent),
   },
   {
     path: ':id/partidos',
@@ -21,4 +21,8 @@ export const LEAGUES_ROUTES: Routes = [
     path: ':id',
     loadComponent: () => import('./league-detail/league-detail.component').then(m => m.LeagueDetailComponent),
   },
+  {
+    path: ':id/equipos/:equipoId/jugadores',
+    loadComponent: () => import('./league-players/league-players.component').then(m => m.LeaguePlayersComponent)
+  }
 ];

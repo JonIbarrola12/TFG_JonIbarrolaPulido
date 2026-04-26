@@ -1,0 +1,70 @@
+<div class="page-wrapper">
+  <header class="page-header">
+    <a
+    class="back-link"
+    [routerLink]="['/ligas', ligaId, 'equipos']">← Volver a equipos
+  </a>
+    <h2 class="team-title">
+    Jugadores del
+    <span class="team-inline">
+      <img class="team-logo" [src]="equipo?.Logo" [alt]="equipo?.Nombre"/>
+      {{ equipo?.Nombre }}
+    </span>
+  </h2>
+  </header>
+
+  @if (cargando) {
+    <p class="status-message">Cargando jugadores...</p>
+  } @else if (errorMessage) {
+    <p class="error-message">{{ errorMessage }}</p>
+  } @else {
+
+    @if (jugadores.length === 0) {
+      <p class="empty-state">No hay jugadores disponibles.</p>
+    } @else {
+
+      <div class="players-grid">
+
+        @for (jugador of jugadores; track jugador.JugadorId) {
+
+          <div class="player-card">
+
+            <div class="player-header">
+              <img class="player-photo"
+                   [src]="jugador.Foto"
+                   [alt]="jugador.Nombre" />
+
+              <div>
+                <h3 class="player-name">{{ jugador.Nombre }}</h3>
+                <span class="player-position">{{ jugador.Posicion }}</span>
+              </div>
+            </div>
+
+            <div class="player-info">
+              <p><strong>Edad:</strong> {{ jugador.Edad }}</p>
+              <p><strong>Nacionalidad:</strong> {{ jugador.Nacionalidad }}</p>
+              @if (jugador.Altura != null && jugador.Altura !== '') {
+              <p>
+                <strong>Altura:</strong>
+                {{ formatHeight(jugador.Altura) }}
+              </p>
+            }
+
+            @if (jugador.Peso != null && jugador.Peso !== '') {
+              <p>
+                <strong>Peso:</strong>
+                {{ formatWeight(jugador.Peso) }}
+              </p>
+            }
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    }
+
+  }
+</div>

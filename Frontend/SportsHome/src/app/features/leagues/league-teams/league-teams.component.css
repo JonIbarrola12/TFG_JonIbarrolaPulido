@@ -31,3 +31,60 @@ h2 {
   color: #475569;
   line-height: 1.6;
 }
+/* GRID */
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* CARD */
+.team-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 220px; /* ⭐ mismo tamaño */
+  padding: 1.2rem;
+
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+
+  text-decoration: none;
+  color: inherit;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* HEADER */
+.team-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.team-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.team-header h3 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* INFO */
+.team-info {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.team-info p {
+  margin: 2px 0;
+}

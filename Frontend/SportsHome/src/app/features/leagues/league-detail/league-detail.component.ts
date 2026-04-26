@@ -42,7 +42,6 @@ export class LeagueDetailComponent implements OnInit {
     this.servicioLigas.obtenerLigaPorId(id).subscribe({
       next: (liga) => {
         this.liga = liga;
-        console.log(this.liga);
       },
       error: (error) => {
         console.error('Error cargando detalle de liga:', error);
@@ -88,12 +87,6 @@ export class LeagueDetailComponent implements OnInit {
         titulo: 'Equipos',
         descripcion: 'Información detallada de equipos y sus plantillas.',
         ruta: `/ligas/${this.ligaId}/equipos`
-      },
-      {
-        icono: '⚽',
-        titulo: 'Jugadores',
-        descripcion: 'Estadísticas individuales por temporada.',
-        ruta: `/ligas/${this.ligaId}/jugadores`
       },
       {
         icono: '📅',

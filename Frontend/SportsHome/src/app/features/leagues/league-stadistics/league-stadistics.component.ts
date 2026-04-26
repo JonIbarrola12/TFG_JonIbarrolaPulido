@@ -4,19 +4,19 @@ import { ServicioLigas } from '../leagues.service';
 import { Liga } from '../../../core/models/ligas.model';
 
 @Component({
-  selector: 'app-league-teams',
+  selector: 'app-league-stadistics',
   standalone: true,
   imports: [RouterModule],
-  templateUrl: './league-teams.component.html',
-  styleUrls: ['./league-teams.component.css']
+  templateUrl: './league-stadistics.component.html',
+  styleUrls: ['./league-stadistics.component.css']
 })
-export class LeagueTeamsComponent implements OnInit {
+export class LeagueStadisticsComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly servicioLigas = inject(ServicioLigas);
 
     liga?: Liga;
     ligaId: string | null = null;
-    equipos: any[] = [];
+    estadisticas: any[] = [];
 
     cargando = true;
     errorMessage = '';
@@ -44,18 +44,5 @@ export class LeagueTeamsComponent implements OnInit {
         this.errorMessage = 'No se pudo cargar la información de la liga.';
       }
     });
-
-    this.servicioLigas.obtenerEquiposPorLigaId(id).subscribe({
-      next: (equipos) => {
-        this.cargando = false;
-        this.equipos = equipos;
-
-      },
-      error: (error) => {
-        console.error('Error cargando equipos de liga:', error);
-        this.errorMessage = 'No se pudo cargar la información de los equipos de la liga.';
-      }
-    });
   }
-
 }

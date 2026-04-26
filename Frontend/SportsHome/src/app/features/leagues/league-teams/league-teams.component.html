@@ -1,8 +1,39 @@
 <div class="page-wrapper">
   <header class="page-header">
     <a class="back-link" [routerLink]="['/ligas', ligaId]">← Volver a liga</a>
-    <h2>Equipos de la liga {{ ligaId }}</h2>
+    <h2>Equipos de la liga {{ liga?.nombre }}</h2>
   </header>
 
-  <p class="page-text">Esta sección mostrará los equipos que participan en la temporada actual de la liga seleccionada.</p>
+  @if (cargando) {
+    <p class="status-message">Cargando equipos...</p>
+  } @else if (errorMessage) {
+    <p class="error-message">{{ errorMessage }}</p>
+  } @else {
+
+    <div class="teams-grid">
+
+      @for (equipo of equipos; track equipo.EquipoId) {
+        <a
+          class="team-card"
+          [routerLink]="['/ligas', ligaId, 'equipos', equipo.EquipoId, 'jugadores']">
+
+          <div class="team-header">
+            <img class="team-logo" [src]="equipo.Logo" [alt]="equipo.Nombre" />
+            <h3>{{ equipo.Nombre }}</h3>
+          </div>
+
+          <div class="team-info">
+            <p><strong>Pais:</strong> {{ equipo.Pais }}</p>
+            <p><strong>Fundacion:</strong> {{ equipo.Fundacion }}</p>
+            <p><strong>Estadio:</strong> {{ equipo.NombreEstadio }}</p>
+            <p><strong>Capacidad:</strong> {{ equipo.CapacidadEstadio }}</p>
+          </div>
+
+        </a>
+      }
+
+    </div>
+  }
+
+
 </div>
