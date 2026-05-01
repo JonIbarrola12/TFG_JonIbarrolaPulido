@@ -22,5 +22,4 @@ dist/
 **/*.tmp
 
 # Uploads de usuarios (NO versionar archivos subidos)
-wwwroot/avatars/*
-!wwwroot/avatars/.gitkeep
+Backend/SportsHome/wwwroot/avatars/
