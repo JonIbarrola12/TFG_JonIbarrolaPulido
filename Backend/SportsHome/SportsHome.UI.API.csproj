@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -43,6 +44,7 @@
 
   <ItemGroup>
     <Folder Include="SportsHome.IL.Repository.EF\Repositories\" />
+    <Folder Include="wwwroot\avatars\" />
   </ItemGroup>
 
 </Project>

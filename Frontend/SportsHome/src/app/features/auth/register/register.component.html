@@ -1,4 +1,52 @@
-<div class="page-placeholder">
-  <h2>Registrarse</h2>
-  <p>Próximamente...</p>
+<div class="auth-container">
+
+  <div class="auth-card">
+    <h2>Crear cuenta</h2>
+
+    @if (errorMessage) {
+      <p class="error">{{ errorMessage }}</p>
+    }
+
+    <form (ngSubmit)="registrarse()">
+
+      <div class="form-group">
+        <label>Usuario</label>
+        <input type="text"
+               [(ngModel)]="nombreUsuario"
+               name="nombreUsuario"
+               placeholder="Tu usuario"
+               required>
+      </div>
+
+      <div class="form-group">
+        <label>Correo</label>
+        <input type="email"
+               [(ngModel)]="correo"
+               name="correo"
+               placeholder="ejemplo@email.com"
+               required>
+      </div>
+
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input type="password"
+               [(ngModel)]="contrasena"
+               name="contrasena"
+               placeholder="********"
+               required>
+      </div>
+
+      <button type="submit" class="btn-primary">
+        {{ cargando ? 'Creando cuenta...' : 'Registrarse' }}
+      </button>
+
+    </form>
+
+    <p class="auth-footer">
+      ¿Ya tienes cuenta?
+      <a routerLink="/auth/login">Inicia sesión</a>
+    </p>
+
+  </div>
+
 </div>

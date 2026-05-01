@@ -25,6 +25,7 @@ export class LeagueMatchesComponent implements OnInit {
   paginaActual = 1;
   tamanoPagina = 10;
 
+
   partidosPaginados: any[] = [];
 
   ngOnInit(): void {
@@ -41,6 +42,12 @@ export class LeagueMatchesComponent implements OnInit {
       next: (liga) => {
         this.liga = liga;
         this.cargando = false;
+
+        if (liga?.nombre === 'Ligue 1' || liga?.nombre === 'Bundesliga') {
+          this.tamanoPagina = 9;
+        } else {
+          this.tamanoPagina = 10;
+        }
       },
       error: (error) => {
         console.error('Error cargando detalle de liga:', error);

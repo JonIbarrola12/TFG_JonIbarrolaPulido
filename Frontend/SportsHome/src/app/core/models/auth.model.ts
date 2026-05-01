@@ -4,7 +4,7 @@ export interface Usuario {
   nombreUsuario: string;
   nombre?: string;
   apellidos?: string;
-  urlAvatar?: string;
+  UrlAvatar?: string;
   rol: RolUsuario;
   creadoEn: string;
 }

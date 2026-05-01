@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SportsHome.Core.Entities;
 using SportsHome.Core.Interfaces;
 using SportsHome.Core.Interfaces.Services;
@@ -43,6 +44,17 @@ namespace SportsHome.Core.Services
         public async Task DeleteAsync(Usuarios usuario)
         {
             await _unitOfWork.Usuarios.RemoveAsync(usuario);
+            await _unitOfWork.Complete();
+        }
+
+        public async Task<Usuarios?> GetByEmailAsync(string correo)
+        {
+            return await _unitOfWork.Usuarios.GetByEmailAsync(correo);
+        }
+
+        public async Task UpdateAsync(Usuarios usuario)
+        {
+            await _unitOfWork.Usuarios.UpdateAsync(usuario);
             await _unitOfWork.Complete();
         }
     }

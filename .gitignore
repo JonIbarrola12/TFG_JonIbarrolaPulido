@@ -20,3 +20,7 @@ dist/
 
 # Docs
 **/*.tmp
+
+# Uploads de usuarios (NO versionar archivos subidos)
+wwwroot/avatars/*
+!wwwroot/avatars/.gitkeep

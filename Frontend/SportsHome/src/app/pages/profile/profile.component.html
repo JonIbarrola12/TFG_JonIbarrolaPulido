@@ -1,4 +1,33 @@
-<div class="page-placeholder">
+<div class="perfil-container">
   <h2>Mi Perfil</h2>
-  <p>Próximamente...</p>
+  <div class="avatar">
+    <div class="file-upload">
+      <input
+        type="file"
+        id="fileInput"
+        (change)="onFileSelected($event)"
+        accept="image/*"
+      />
+
+      <label for="fileInput" class="file-button">
+        📷 Seleccionar imagen
+      </label>
+      @if(selectedFile){
+        <span>
+        {{ selectedFile.name }}
+      </span>
+      }
+    </div>
+
+    <img [src]="perfil.UrlAvatar || 'assets/pictures/user.png'">
+
+    <button (click)="subirAvatar()">Subir imagen</button>
+  </div>
+
+  <input [(ngModel)]="perfil.Nombre" placeholder="Nombre">
+  <input [(ngModel)]="perfil.Apellidos" placeholder="Apellidos">
+  <input [(ngModel)]="perfil.NombreUsuario" placeholder="Nombre de usuario">
+
+  <button (click)="guardar()">Guardar cambios</button>
+  <a routerLink="/"><button>Volver</button></a>
 </div>

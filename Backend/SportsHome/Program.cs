@@ -42,6 +42,7 @@ builder.Services.AddScoped<IEstadisticasJugadoresService, EstadisticasJugadoresS
 builder.Services.AddScoped<IClasificacionesService, ClasificacionesService>();
 builder.Services.AddScoped<ISyncLogsService, SyncLogsService>();
 builder.Services.AddScoped<IUsuariosService, UsuariosService>();
+builder.Services.AddScoped<PasswordService>();
 
 // Servicio para consumir API Football
 builder.Services.AddHttpClient<IApiFootball, ApiFootballService>(client =>
@@ -124,6 +125,7 @@ app.UseSwaggerUI(c =>
 });
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseCors("Angular");
 app.UseAuthorization();
 app.MapControllers();
