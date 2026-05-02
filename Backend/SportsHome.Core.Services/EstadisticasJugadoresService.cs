@@ -67,6 +67,76 @@ namespace SportsHome.Core.Services
         {
             return await _unitOfWork.EstadisticasJugadores.GetListAsync();
         }
+
+        public async Task<IEnumerable<EstadisticasJugadores>> GetTop10GoleadoresAsync(int ligaId, int? temporada = null)
+        {
+            var query = (await _unitOfWork.EstadisticasJugadores.GetListAsync())
+                .Where(e => e.LigaId == ligaId && e.Goles.HasValue);
+
+            if (temporada.HasValue)
+                query = query.Where(e => e.Temporada == temporada.Value);
+
+            return query
+                .OrderByDescending(e => e.Goles)
+                .Take(10)
+                .ToList();
+        }
+
+        public async Task<IEnumerable<EstadisticasJugadores>> GetTop10AsistentesAsync(int ligaId, int? temporada = null)
+        {
+            var query = (await _unitOfWork.EstadisticasJugadores.GetListAsync())
+                .Where(e => e.LigaId == ligaId && e.Asistencias.HasValue);
+
+            if (temporada.HasValue)
+                query = query.Where(e => e.Temporada == temporada.Value);
+
+            return query
+                .OrderByDescending(e => e.Asistencias)
+                .Take(10)
+                .ToList();
+        }
+
+        public async Task<IEnumerable<EstadisticasJugadores>> GetTop10TarjetasAmarillasAsync(int ligaId, int? temporada = null)
+        {
+            var query = (await _unitOfWork.EstadisticasJugadores.GetListAsync())
+                .Where(e => e.LigaId == ligaId && e.TarjetasAmarillas.HasValue);
+
+            if (temporada.HasValue)
+                query = query.Where(e => e.Temporada == temporada.Value);
+
+            return query
+                .OrderByDescending(e => e.TarjetasAmarillas)
+                .Take(10)
+                .ToList();
+        }
+
+        public async Task<IEnumerable<EstadisticasJugadores>> GetTop10TarjetasRojasAsync(int ligaId, int? temporada = null)
+        {
+            var query = (await _unitOfWork.EstadisticasJugadores.GetListAsync())
+                .Where(e => e.LigaId == ligaId && e.TarjetasRojas.HasValue);
+
+            if (temporada.HasValue)
+                query = query.Where(e => e.Temporada == temporada.Value);
+
+            return query
+                .OrderByDescending(e => e.TarjetasRojas)
+                .Take(10)
+                .ToList();
+        }
+
+        public async Task<IEnumerable<EstadisticasJugadores>> GetTop10MinutosAsync(int ligaId, int? temporada = null)
+        {
+            var query = (await _unitOfWork.EstadisticasJugadores.GetListAsync())
+                .Where(e => e.LigaId == ligaId && e.Minutos.HasValue);
+
+            if (temporada.HasValue)
+                query = query.Where(e => e.Temporada == temporada.Value);
+
+            return query
+                .OrderByDescending(e => e.Minutos)
+                .Take(10)
+                .ToList();
+        }
     }
 }
 

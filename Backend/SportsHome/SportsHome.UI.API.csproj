@@ -44,7 +44,6 @@
 
   <ItemGroup>
     <Folder Include="SportsHome.IL.Repository.EF\Repositories\" />
-    <Folder Include="wwwroot\avatars\" />
   </ItemGroup>
 
 </Project>
