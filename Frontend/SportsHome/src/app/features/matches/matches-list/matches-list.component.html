@@ -1,4 +1,156 @@
-<div class="page-placeholder">
-  <h2>Partidos</h2>
-  <p>Próximamente...</p>
+<div class="page-wrapper">
+
+  <h2>Todos los partidos</h2>
+
+  @if (partidos.length === 0) {
+    <p class="empty-state">No hay partidos disponibles.</p>
+  } @else {
+
+    <div class="filters">
+
+      <!-- 📅 Fecha inicio -->
+      <div class="filter-group">
+        <label>Fecha inicio</label>
+        <input type="date" [(ngModel)]="fechaInicio" />
+      </div>
+
+      <!-- 📅 Fecha fin -->
+      <div class="filter-group">
+        <label>Fecha fin</label>
+        <input type="date" [(ngModel)]="fechaFin" />
+      </div>
+
+      <!-- 🏆 Equipos por liga -->
+      <div class="filter-group">
+        <label>Equipos</label>
+
+        <div class="dropdown">
+          <button (click)="toggleDropdown()">
+            Seleccionar equipos
+          </button>
+
+          @if (dropdownAbierto) {
+            <div class="dropdown-menu">
+
+              @for (pais of Object.keys(equiposPorPais); track pais) {
+                <div class="pais-block">
+                  <strong>{{ pais }}</strong>
+
+                  @for (equipo of equiposPorPais[pais]; track equipo.EquipoId) {
+
+                    <label class="checkbox">
+                      <input
+                        type="checkbox"
+                        [value]="equipo.EquipoId"
+                        [checked]="equiposSeleccionados.includes(equipo.EquipoId)"
+                        (change)="toggleEquipo(equipo.EquipoId)" />
+
+                      {{ equipo.Nombre }}
+                    </label>
+
+                  }
+
+                </div>
+
+              }
+
+            </div>
+          }
+
+        </div>
+      </div>
+
+      <!-- BOTONES -->
+      <div class="filter-actions">
+        <button (click)="aplicarFiltros()">Filtrar</button>
+        <button class="reset" (click)="resetFiltros()">Reset</button>
+      </div>
+
+    </div>
+    <div class="matches-list">
+
+      @for (p of partidosPaginados; track p.PartidoId){
+
+        <div class="match-card">
+
+          <!-- HEADER -->
+          <div class="match-header">
+            <span>{{ p.Liga?.Nombre }} - {{ p.Ronda }}</span>
+            <span class="match-status">{{ p.Estado }}</span>
+            <span>{{ p.Fecha | date:'short' }}</span>
+          </div>
+
+          <!-- TEAMS -->
+          <div class="match-teams">
+
+            <!-- LOCAL -->
+            <div class="team-local">
+              <img [src]="p.EquipoLocal?.Logo" />
+              <span>{{ p.EquipoLocal?.Nombre }}</span>
+            </div>
+
+            <!-- RESULTADO -->
+            <div class="score">
+              {{ p.GolesLocal }} - {{ p.GolesVisitante }}
+            </div>
+
+            <!-- VISITANTE -->
+            <div class="team-visitor">
+              <img [src]="p.EquipoVisitante?.Logo" />
+              <span>{{ p.EquipoVisitante?.Nombre }}</span>
+            </div>
+
+          </div>
+
+          <!-- FOOTER -->
+          <div class="match-footer">
+
+            <div class="match-info">
+              <span class="label">Árbitro</span>
+              <span class="value">
+                {{ p.Arbitro || 'No disponible' }}
+              </span>
+            </div>
+
+            <div class="match-info">
+              <span class="label">Estadio</span>
+              <span class="value">
+                {{ p.EquipoLocal?.NombreEstadio || 'Desconocido' }}
+              </span>
+            </div>
+
+            <div class="match-info">
+              <span class="label">Temporada: </span>
+              <span class="value">{{ p.Temporada }}</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      }
+
+    </div>
+
+  }
+
+  <!-- PAGINACIÓN -->
+  <div class="pagination">
+
+    <button
+      (click)="cambiarPagina(paginaActual - 1)"
+      [disabled]="paginaActual === 1">
+      ◀
+    </button>
+
+    <span>Página {{ paginaActual }}</span>
+
+    <button
+      (click)="cambiarPagina(paginaActual + 1)"
+      [disabled]="paginaActual * tamanoPagina >= partidosFiltrados.length">
+      ▶
+    </button>
+
+  </div>
+
 </div>

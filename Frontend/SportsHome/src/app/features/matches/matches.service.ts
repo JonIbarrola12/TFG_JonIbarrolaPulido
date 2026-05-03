@@ -1,21 +1,25 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ServicioApi } from '../../core/services/api.service';
-import { ENDPOINTS_API } from '../../core/constants/api.constants';
-import { RespuestaApi } from '../../core/models/api-response.model';
-import { Partido } from '../../core/models/match.model';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioPartidos {
-  private readonly servicioApi = inject(ServicioApi);
+  private readonly http = inject(HttpClient);
+    private readonly urlBase = environment.apiUrl;
 
-  obtenerPartidos(): Observable<RespuestaApi<Partido[]>> {
-    return this.servicioApi.obtener<RespuestaApi<Partido[]>>(ENDPOINTS_API.PARTIDOS.BASE);
+    getPartidos() {
+      return this.http.get<any>(`${this.urlBase}/Partidos/todos`);
+    }
+
+  getPartidosFiltrados(filtros: any) {
+    return this.http.get<any>(`${this.urlBase}/Partidos`, {
+      params: filtros
+    });
   }
 
-  obtenerPartidoPorId(id: number): Observable<RespuestaApi<Partido>> {
-    return this.servicioApi.obtener<RespuestaApi<Partido>>(ENDPOINTS_API.PARTIDOS.POR_ID(id));
+  getEquipos(){
+    return this.http.get<any>(`${this.urlBase}/Equipos`);
   }
 }

@@ -10,14 +10,6 @@ export const routes: Routes = [
     loadChildren: () => import('./features/leagues/leagues.routes').then(m => m.LEAGUES_ROUTES),
   },
   {
-    path: 'equipos',
-    loadChildren: () => import('./features/teams/teams.routes').then(m => m.TEAMS_ROUTES),
-  },
-  {
-    path: 'jugadores',
-    loadChildren: () => import('./features/players/players.routes').then(m => m.PLAYERS_ROUTES),
-  },
-  {
     path: 'partidos',
     loadChildren: () => import('./features/matches/matches.routes').then(m => m.MATCHES_ROUTES),
   },

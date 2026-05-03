@@ -28,6 +28,7 @@ export const ENDPOINTS_API = {
     BASE: '/jugadores',
     POR_ID: (id: number) => `/jugadores/${id}`,
     ESTADISTICAS: (id: number) => `/jugadores/${id}/estadisticas`,
+    ESTADISTICASLIGAS: (id: number) => `/jugadores/estadisticas/ligas/${id}`,
   },
   // Partidos
   PARTIDOS: {

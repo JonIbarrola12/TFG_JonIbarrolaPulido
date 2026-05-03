@@ -101,5 +101,92 @@ namespace SportsHome.UI.Controllers
 
             return Ok(_mapper.Map<List<PartidosResource>>(partidos));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll(
+    [FromQuery] int page = 1,
+    [FromQuery] int pageSize = 10,
+    [FromQuery] DateTime? fechaInicio = null,
+    [FromQuery] DateTime? fechaFin = null,
+    [FromQuery] List<int>? equipos = null
+)
+        {
+            var query = _context.Partidos
+                .Include(p => p.EquipoLocal)
+                .Include(p => p.EquipoVisitante)
+                .Include(p => p.Liga)
+                .AsQueryable();
+
+            // 🔥 FILTRO SOLO DIA + MES
+            if (fechaInicio.HasValue && !fechaFin.HasValue)
+            {
+                query = query.Where(p =>
+                    p.Fecha.Day == fechaInicio.Value.Day &&
+                    p.Fecha.Month == fechaInicio.Value.Month
+                );
+            }
+            else if (!fechaInicio.HasValue && fechaFin.HasValue)
+            {
+                query = query.Where(p =>
+                    p.Fecha.Day == fechaFin.Value.Day &&
+                    p.Fecha.Month == fechaFin.Value.Month
+                );
+            }
+            else if (fechaInicio.HasValue && fechaFin.HasValue)
+            {
+                var start = fechaInicio.Value;
+                var end = fechaFin.Value;
+
+                query = query.Where(p =>
+                    (p.Fecha.Month > start.Month ||
+                     (p.Fecha.Month == start.Month && p.Fecha.Day >= start.Day))
+                &&
+                    (p.Fecha.Month < end.Month ||
+                     (p.Fecha.Month == end.Month && p.Fecha.Day <= end.Day))
+                );
+            }
+
+            // ⚽ filtro equipos
+            if (equipos != null && equipos.Any())
+            {
+                query = query.Where(p =>
+                    equipos.Contains(p.EquipoLocalId) ||
+                    equipos.Contains(p.EquipoVisitanteId)
+                );
+            }
+
+            // 🔥 ORDEN CORRECTO (por jornada real)
+            query = query
+                .OrderBy(p => p.LigaId)
+                .ThenBy(p => p.Temporada)
+                .ThenBy(p => p.Fecha);
+
+            var total = await query.CountAsync();
+
+            var partidos = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return Ok(new
+            {
+                total,
+                page,
+                pageSize,
+                data = _mapper.Map<List<PartidosResource>>(partidos)
+            });
+        }
+        //Get api/Partidos/todos
+        [HttpGet("todos")]
+        public async Task<IActionResult> GetAll()
+        {
+            var partidos = await _context.Partidos
+                .Include(p => p.EquipoLocal)
+                .Include(p => p.EquipoVisitante)
+                .Include(p => p.Liga)
+                .ToListAsync();
+
+            return Ok(_mapper.Map<List<PartidosResource>>(partidos));
+        }
     }
 }

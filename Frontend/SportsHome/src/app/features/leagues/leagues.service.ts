@@ -124,31 +124,31 @@ export class ServicioLigas {
       );
     }
     obtenerTopGoleadoresPorLigaId(id: number, temporada?: number): Observable<any[]> {
-    const endpoint = `/jugadores/estadisticas/ligas/${id}/top-goleadores`;
+    const endpoint = `${ENDPOINTS_API.JUGADORES.ESTADISTICASLIGAS(id)}/top-goleadores`;
     const params = temporada ? { temporada } : undefined;
     return this.servicioApi.obtener<any[]>(endpoint, params);
   }
 
   obtenerTopAsistentesPorLigaId(id: number, temporada?: number): Observable<any[]> {
-    const endpoint = `/jugadores/estadisticas/ligas/${id}/top-asistentes`;
+    const endpoint = `${ENDPOINTS_API.JUGADORES.ESTADISTICASLIGAS(id)}/top-asistentes`;
     const params = temporada ? { temporada } : undefined;
     return this.servicioApi.obtener<any[]>(endpoint, params);
   }
 
   obtenerTopTarjetasAmarillasPorLigaId(id: number, temporada?: number): Observable<any[]> {
-    const endpoint = `/jugadores/estadisticas/ligas/${id}/top-tarjetas-amarillas`;
+    const endpoint = `${ENDPOINTS_API.JUGADORES.ESTADISTICASLIGAS(id)}/top-tarjetas-amarillas`;
     const params = temporada ? { temporada } : undefined;
     return this.servicioApi.obtener<any[]>(endpoint, params);
   }
 
   obtenerTopTarjetasRojasPorLigaId(id: number, temporada?: number): Observable<any[]> {
-    const endpoint = `/jugadores/estadisticas/ligas/${id}/top-tarjetas-rojas`;
+    const endpoint = `${ENDPOINTS_API.JUGADORES.ESTADISTICASLIGAS(id)}/top-tarjetas-rojas`;
     const params = temporada ? { temporada } : undefined;
     return this.servicioApi.obtener<any[]>(endpoint, params);
   }
 
   obtenerTopMinutosPorLigaId(id: number, temporada?: number): Observable<any[]> {
-    const endpoint = `/jugadores/estadisticas/ligas/${id}/top-minutos`;
+    const endpoint = `${ENDPOINTS_API.JUGADORES.ESTADISTICASLIGAS(id)}/top-minutos`;
     const params = temporada ? { temporada } : undefined;
     return this.servicioApi.obtener<any[]>(endpoint, params);
   }

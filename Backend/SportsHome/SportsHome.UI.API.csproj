@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SportsHome.IL.Repository.EF\**" />
+    <Content Remove="SportsHome.IL.Repository.EF\**" />
+    <EmbeddedResource Remove="SportsHome.IL.Repository.EF\**" />
+    <None Remove="SportsHome.IL.Repository.EF\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <!-- Ensure controller and services projects are referenced so controllers are discovered at runtime -->
     <ProjectReference Include="..\SportsHome.UI.Controllers\SportsHome.UI.Controllers.csproj" />
     <ProjectReference Include="..\SportsHome.Core.Services\SportsHome.Core.Services.csproj" />
@@ -40,10 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="SportsHome.IL.Repository.EF\Repositories\" />
   </ItemGroup>
 
 </Project>
