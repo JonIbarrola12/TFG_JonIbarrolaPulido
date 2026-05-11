@@ -152,4 +152,10 @@ export class ServicioLigas {
     const params = temporada ? { temporada } : undefined;
     return this.servicioApi.obtener<any[]>(endpoint, params);
   }
+
+  obtenerEstadisticasPorJugadorId(id: number): Observable<any[]> {
+    return this.servicioApi.obtener<any[]>(
+      ENDPOINTS_API.JUGADORES.ESTADISTICAS(id)
+    );
+  }
 }

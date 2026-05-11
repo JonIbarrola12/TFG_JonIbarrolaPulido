@@ -1,126 +1,263 @@
 .page-wrapper {
-  max-width: 900px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 24px 20px;
+  padding: 2.5rem 1.5rem 4rem;
+  color: #fff;
 }
 
+/* ================= HEADER ================= */
+
 .page-header {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 2.5rem;
 }
 
 .back-link {
-  font-size: 0.95rem;
-  color: #0f4c81;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+
+  margin-bottom: 1.5rem;
+
+  color: #93c5fd;
   text-decoration: none;
+  font-weight: 600;
+
+  transition: all 0.2s ease;
 }
 
 .back-link:hover {
-  text-decoration: underline;
+  color: white;
+  transform: translateX(-3px);
 }
 
-h2 {
-  margin: 0;
-  font-size: 1.75rem;
-  color: #1f2937;
-}
+/* ================= TEAM TITLE ================= */
 
-.page-text {
-  color: #475569;
-  line-height: 1.6;
-}
-
-/* Contenedor del título */
 .team-title {
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap; /* evita que se rompa en móvil */
+  flex-wrap: wrap;
+  gap: 0.6rem;
+
+  margin: 0;
+
+  font-size: 2rem;
+  font-weight: 800;
+
+  color: white;
 }
 
-/* Logo + nombre juntos */
+/* 👇 SIN CAJA */
 .team-inline {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.6rem;
+
+  padding: 0;
+  margin-left: 0.3rem;
+
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
 }
 
-/* Logo */
 .team-logo {
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
 }
 
-/* GRID */
-.players-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1.5rem;
+/* ================= STATES ================= */
+
+.status-message,
+.error-message,
+.empty-state {
+  text-align: center;
+
+  margin-top: 2rem;
+
+  padding: 1rem;
+
+  border-radius: 16px;
+
+  font-weight: 500;
 }
 
-/* CARD */
+.status-message {
+  background: rgba(59,130,246,0.12);
+  color: #93c5fd;
+}
+
+.error-message {
+  background: rgba(239,68,68,0.12);
+  color: #fca5a5;
+}
+
+.empty-state {
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.7);
+}
+
+/* ================= GRID ================= */
+
+.players-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(320px, 380px));
+
+  justify-content: center;
+
+  gap: 1.6rem;
+
+  width: 100%;
+}
+
+/* ================= PLAYER CARD ================= */
+
 .player-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 14px;
-  padding: 1.2rem;
+  position: relative;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1.2rem;
 
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 1.5rem;
+
+  border-radius: 24px;
+
+  text-decoration: none;
+  color: inherit;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.05),
+      rgba(255,255,255,0.02)
+    );
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(12px);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* glow */
+.player-card::before {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(59,130,246,0.18),
+      transparent 45%
+    );
+
+  pointer-events: none;
 }
 
 .player-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  transform: translateY(-6px);
+
+  border-color: rgba(59,130,246,0.4);
+
+  box-shadow:
+    0 20px 45px rgba(0,0,0,0.35),
+    0 0 0 1px rgba(59,130,246,0.12);
 }
 
-/* HEADER */
+/* ================= PLAYER HEADER ================= */
+
 .player-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 1rem;
+
+  z-index: 2;
 }
 
-/* FOTO */
 .player-photo {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+
+  border-radius: 20px;
+
   object-fit: cover;
+
   background: rgba(255,255,255,0.05);
+
+  border: 2px solid rgba(255,255,255,0.08);
+
+  flex-shrink: 0;
 }
 
-/* NAME */
 .player-name {
   margin: 0;
-  font-size: 1rem;
-  color: var(--color-text-primary);
+
+  font-size: 1.2rem;
+  font-weight: 700;
+
+  color: white;
 }
 
-/* POSITION */
-.player-position {
-  font-size: 0.85rem;
-  color: var(--color-primary);
-}
+/* ================= PLAYER INFO ================= */
 
-/* INFO */
 .player-info {
-  font-size: 0.85rem;
-  color: var(--color-text-secondary);
+  display: grid;
+  gap: 0.7rem;
+
+  z-index: 2;
 }
 
 .player-info p {
-  margin: 2px 0;
+  margin: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-bottom: 0.55rem;
+
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+
+  color: rgba(255,255,255,0.75);
+
+  font-size: 0.95rem;
 }
 
-/* EMPTY */
-.empty-state {
-  color: rgba(255,255,255,0.6);
-  margin-top: 1rem;
+.player-info strong {
+  color: white;
+  font-weight: 600;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  .page-wrapper {
+    padding: 2rem 1rem 3rem;
+  }
+
+  .players-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-title {
+    font-size: 1.6rem;
+  }
+
+  .player-card {
+    padding: 1.25rem;
+  }
+
+  .player-photo {
+    width: 68px;
+    height: 68px;
+  }
 }

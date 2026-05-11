@@ -55,8 +55,8 @@ export class LeaguePlayersComponent implements OnInit {
 
     this.servicioLigas.obtenerJugadoresPorEquipoId(id).subscribe({
       next: (jugadores) => {
-        this.cargando = false;
         console.log(jugadores);
+        this.cargando = false;
         this.jugadores = jugadores;
 
       },
@@ -67,29 +67,57 @@ export class LeaguePlayersComponent implements OnInit {
     });
   }
   formatHeight(value: any): string {
-    if (!value) return '';
+
+    // null, undefined, vacío
+    if (
+      value === null ||
+      value === undefined ||
+      value === ''
+    ) {
+      return 'Sin datos';
+    }
 
     const num = Number(value);
 
+    // NaN
+    if (isNaN(num)) {
+      return 'Sin datos';
+    }
+
     // si ya viene en cm
-    if (num > 3) return `${num} cm`;
+    if (num > 3) {
+      return `${num} cm`;
+    }
 
     // si viene en metros (ej: 1.82)
     return `${(num * 100).toFixed(0)} cm`;
   }
 
   formatWeight(value: any): string {
-    if (!value) return '';
+
+    // null, undefined, vacío
+    if (
+      value === null ||
+      value === undefined ||
+      value === ''
+    ) {
+      return 'Sin datos';
+    }
 
     const str = String(value).toLowerCase();
 
     // si ya trae kg
-    if (str.includes('kg')) return str;
+    if (str.includes('kg')) {
+      return str;
+    }
 
     const num = Number(value);
 
-    if (!isNaN(num)) return `${num} kg`;
+    // NaN
+    if (isNaN(num)) {
+      return 'Sin datos';
+    }
 
-    return value;
+    return `${num} kg`;
   }
 }

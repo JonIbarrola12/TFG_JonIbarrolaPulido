@@ -142,5 +142,14 @@ namespace SportsHome.UI.Controllers
 
             return Ok(_mapper.Map<List<EstadisticasJugadoresResource>>(goleadores));
         }
+        //[HttpGet("con-equipos")]
+        //public async Task<IActionResult> GetLigasConEquipos()
+        //{
+        //    var ligas = await _context.Ligas
+        //        .Include(l => l.Equipos)
+        //        .ToListAsync();
+
+        //    return Ok(ligas);
+        //}
     }
 }

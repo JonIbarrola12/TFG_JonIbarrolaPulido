@@ -4,7 +4,8 @@
   padding: 0 1.5rem;
 }
 
-/* Hero */
+/* HERO */
+
 .home__hero {
   padding: 5rem 0 4rem;
   text-align: center;
@@ -38,7 +39,8 @@
   flex-wrap: wrap;
 }
 
-/* Section grid */
+/* GRID SECCIONES */
+
 .home__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -56,7 +58,10 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   text-decoration: none;
-  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s,
+    border-color 0.2s;
 }
 
 .home__section-card:hover {
@@ -81,4 +86,231 @@
   color: var(--color-text-secondary);
   margin: 0;
   line-height: 1.5;
+}
+
+/* ESTADISTICAS HOME */
+
+.estadisticas-home {
+  padding: 2rem 0 5rem;
+}
+
+/* GRID */
+
+.estadisticas-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 1.5rem;
+}
+
+/* CARD */
+
+.estadistica-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.estadistica-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-primary);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+
+/* TITULO */
+
+.estadistica-card h3 {
+  margin: 0 0 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* TABLA */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: rgba(255,255,255,0.03);
+}
+
+th,
+td {
+  padding: 0.8rem;
+  text-align: left;
+  font-size: 0.92rem;
+}
+
+th {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background-color 0.15s ease;
+}
+
+tbody tr:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+/* TOP 3 */
+
+tbody tr:nth-child(1) {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,215,0,0.12),
+      transparent
+    );
+}
+
+tbody tr:nth-child(2) {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(192,192,192,0.10),
+      transparent
+    );
+}
+
+tbody tr:nth-child(3) {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(205,127,50,0.10),
+      transparent
+    );
+}
+
+/* JUGADOR */
+
+.jugador-cell {
+  min-width: 220px;
+}
+
+.jugador-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* FOTO */
+
+.jugador-foto {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-primary);
+  flex-shrink: 0;
+}
+
+/* TEXTO */
+
+.jugador-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.jugador-nombre {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--color-text-primary);
+}
+
+/* EQUIPO */
+
+.equipo-info {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.equipo-logo {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.equipo-nombre {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+/* RANKING */
+
+.ranking {
+  width: 36px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* VALORES */
+
+.stat-value {
+  text-align: right;
+  font-weight: 700;
+  color: #8b5cf6;
+}
+
+/* SIN DATOS */
+
+.sin-datos {
+  padding: 1rem;
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
+
+/* LOADING / ERROR */
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: var(--color-text-secondary);
+}
+
+.error {
+  background: rgba(255, 0, 0, 0.08);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  color: #ff6b6b;
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+  .estadisticas-section {
+    grid-template-columns: 1fr;
+  }
+
+  th,
+  td {
+    padding: 0.65rem;
+    font-size: 0.82rem;
+  }
+
+  .jugador-foto {
+    width: 36px;
+    height: 36px;
+  }
+
+  .jugador-nombre {
+    font-size: 0.85rem;
+  }
+
 }

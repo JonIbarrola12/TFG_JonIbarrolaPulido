@@ -1,24 +1,33 @@
 .page-wrapper {
-  padding: 2rem 1.5rem;
-  background: #0b1f3a; /* 🌌 fondo azul oscuro global */
-  min-height: 100vh;
-  color: #ffffff;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  color: #fff;
 }
 
 /* ================= HEADER ================= */
 
 .page-header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .back-link {
-  display: inline-block;
-  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+
+  margin-bottom: 1.5rem;
+
+  color: #93c5fd;
   text-decoration: none;
   font-weight: 600;
+
+  transition: all 0.2s ease;
+}
+
+.back-link:hover {
+  color: white;
+  transform: translateX(-3px);
 }
 
 .page-header h2 {
@@ -104,7 +113,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.25rem;
-  align-items: stretch; 
+  align-items: stretch;
 }
 
 .section-card {
@@ -250,4 +259,51 @@
 .empty-state {
   color: rgba(255, 255, 255, 0.6);
   margin-top: 20px;
+}
+/* ================= LEGEND ================= */
+
+.table-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.75);
+}
+
+.legend-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+}
+
+.champions-color {
+  background: #1e88e5;
+}
+
+.europa-color {
+  background: #fb8c00;
+}
+
+.conference-color {
+  background: #43a047;
+}
+
+.relegation-color {
+  background: #e53935;
+}
+
+
+.league-description {
+  margin-top: 1rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.78);
+  font-size: 0.95rem;
+  max-width: 900px;
 }

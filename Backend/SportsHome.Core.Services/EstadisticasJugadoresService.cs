@@ -137,6 +137,81 @@ namespace SportsHome.Core.Services
                 .Take(10)
                 .ToList();
         }
+
+        public async Task<IEnumerable<EstadisticasJugadores>> GetTop10MejoresJugadoresAsync(int? temporada = null)
+        {
+            var allStats = await _unitOfWork.EstadisticasJugadores.GetListAsync();
+            var query = allStats
+                .Where(e => (e.Goles.HasValue || e.Asistencias.HasValue));
+
+            if (temporada.HasValue)
+                query = query.Where(e => e.Temporada == temporada.Value);
+
+            var topJugadores = query
+                .GroupBy(e => e.JugadorId)
+                .Select(g => new
+                {
+                    JugadorId = g.Key,
+                    TotalGolesAsistencias = g.Sum(e => (e.Goles ?? 0) + (e.Asistencias ?? 0)),
+                    Estadisticas = g.OrderByDescending(e => (e.Goles ?? 0) + (e.Asistencias ?? 0)).First()
+                })
+                .OrderByDescending(x => x.TotalGolesAsistencias)
+                .Take(10)
+                .Select(x => x.Estadisticas)
+                .ToList();
+
+            return topJugadores;
+        }
+
+        public async Task<IEnumerable<EstadisticasJugadores>> GetTop10MasProblematicosAsync(int? temporada = null)
+        {
+            var allStats = await _unitOfWork.EstadisticasJugadores.GetListAsync();
+            var query = allStats
+                .Where(e => (e.TarjetasAmarillas.HasValue || e.TarjetasRojas.HasValue));
+
+            if (temporada.HasValue)
+                query = query.Where(e => e.Temporada == temporada.Value);
+
+            var topJugadores = query
+                .GroupBy(e => e.JugadorId)
+                .Select(g => new
+                {
+                    JugadorId = g.Key,
+                    TotalTarjetas = g.Sum(e => (e.TarjetasAmarillas ?? 0) + (e.TarjetasRojas ?? 0)),
+                    Estadisticas = g.OrderByDescending(e => (e.TarjetasAmarillas ?? 0) + (e.TarjetasRojas ?? 0)).First()
+                })
+                .OrderByDescending(x => x.TotalTarjetas)
+                .Take(10)
+                .Select(x => x.Estadisticas)
+                .ToList();
+
+            return topJugadores;
+        }
+
+        public async Task<IEnumerable<EstadisticasJugadores>> GetTop10MinutosTotalesAsync(int? temporada = null)
+        {
+            var allStats = await _unitOfWork.EstadisticasJugadores.GetListAsync();
+            var query = allStats
+                .Where(e => e.Minutos.HasValue);
+
+            if (temporada.HasValue)
+                query = query.Where(e => e.Temporada == temporada.Value);
+
+            var topJugadores = query
+                .GroupBy(e => e.JugadorId)
+                .Select(g => new
+                {
+                    JugadorId = g.Key,
+                    TotalMinutos = g.Sum(e => e.Minutos ?? 0),
+                    Estadisticas = g.OrderByDescending(e => e.Minutos).First()
+                })
+                .OrderByDescending(x => x.TotalMinutos)
+                .Take(10)
+                .Select(x => x.Estadisticas)
+                .ToList();
+
+            return topJugadores;
+        }
     }
 }
 

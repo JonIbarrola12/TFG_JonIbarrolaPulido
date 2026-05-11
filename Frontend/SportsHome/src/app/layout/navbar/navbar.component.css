@@ -2,143 +2,225 @@
   display: block;
 }
 
+/* ================= NAVBAR BASE ================= */
+
 .navbar {
-  background-color: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
 
 .navbar__container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1280px;
+
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 0 1.5rem;
-  height: 64px;
-  gap: 2rem;
+
+  padding: 0 1.2rem;
+  height: 68px;
+
+  gap: 1.5rem;
 }
 
-/* Brand */
+/* ================= BRAND ================= */
+
 .navbar__brand {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
+
   text-decoration: none;
 }
 
 .navbar__logo {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 
 .navbar__title {
   font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-primary);
+  font-weight: 800;
+
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Links */
+/* ================= LINKS ================= */
+
 .navbar__links {
   display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
   list-style: none;
-  gap: 0.25rem;
   flex: 1;
+  justify-content: center;
 }
 
 .navbar__link {
-  padding: 0.5rem 0.75rem;
+  position: relative;
+
+  padding: 0.5rem 0.9rem;
+
+  border-radius: 12px;
+
   text-decoration: none;
-  border-radius: var(--radius-sm);
-  color: var(--color-text-secondary);
+  color: rgba(255,255,255,0.7);
+
+  font-weight: 500;
+
+  transition: all 0.2s ease;
 }
 
 .navbar__link:hover {
-  background: var(--color-surface-hover);
+  color: white;
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-1px);
 }
 
 .navbar__link--active {
-  color: var(--color-primary);
-  background: var(--color-primary-light);
+  color: white;
+
+  background: rgba(59,130,246,0.18);
+
+  border: 1px solid rgba(59,130,246,0.35);
 }
 
-/* Actions */
+/* ================= ACTIONS ================= */
+
 .navbar__actions {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
-/* Avatar */
+/* ================= BUTTONS ================= */
+
+.btn {
+  padding: 0.45rem 0.9rem;
+
+  border-radius: 12px;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+  text-decoration: none;
+}
+
+/* login */
+.btn--ghost {
+  color: rgba(255,255,255,0.8);
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.btn--ghost:hover {
+  background: rgba(255,255,255,0.06);
+  color: white;
+}
+
+/* register */
+.btn--primary {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: white;
+  border: none;
+  box-shadow: 0 8px 20px rgba(59,130,246,0.25);
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(59,130,246,0.35);
+}
+
+/* outline */
+.btn--outline {
+  border: 1px solid rgba(255,255,255,0.2);
+  background: transparent;
+  color: rgba(255,255,255,0.8);
+}
+
+.btn--outline:hover {
+  background: rgba(255,255,255,0.06);
+  color: white;
+}
+
+/* ================= AVATAR ================= */
+
 .profile-avatar {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
+
   border-radius: 50%;
+
   object-fit: cover;
-  border: 2px solid var(--color-primary);
+
+  border: 2px solid rgba(59,130,246,0.6);
+
   transition: 0.2s;
 }
 
 .profile-avatar:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
-/* Buttons */
-.btn {
-  padding: 6px 12px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 0.85rem;
-  cursor: pointer;
-}
+/* ================= BURGER ================= */
 
-.btn--primary {
-  background: var(--color-primary);
-  color: white;
-}
-
-.btn--ghost {
-  background: transparent;
-  color: var(--color-text-primary);
-}
-
-.btn--outline {
-  border: 1px solid var(--color-border);
-  background: transparent;
-}
-
-/* Burger */
 .navbar__burger {
   display: none;
   flex-direction: column;
   gap: 5px;
+
   background: none;
   border: none;
+
+  cursor: pointer;
 }
 
 .navbar__burger span {
   width: 24px;
   height: 2px;
-  background: var(--color-text-primary);
+
+  background: white;
+  border-radius: 2px;
 }
 
-/* Mobile */
+/* ================= MOBILE ================= */
+
 @media (max-width: 768px) {
+
   .navbar__burger {
     display: flex;
   }
 
   .navbar__links {
     display: none;
+
     position: absolute;
-    top: 64px;
+    top: 68px;
     left: 0;
     right: 0;
+
     flex-direction: column;
-    background: var(--color-surface);
+
     padding: 1rem;
+
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
 
   .navbar__links--open {

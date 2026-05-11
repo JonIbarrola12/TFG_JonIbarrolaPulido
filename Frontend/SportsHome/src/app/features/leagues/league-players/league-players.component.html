@@ -27,7 +27,9 @@
 
         @for (jugador of jugadores; track jugador.JugadorId) {
 
-          <div class="player-card">
+          <a
+          class="player-card"
+          [routerLink]="['/ligas', ligaId, 'equipos', equipoId, 'jugadores', jugador.JugadorId, 'estadisticas']">
 
             <div class="player-header">
               <img class="player-photo"
@@ -36,7 +38,6 @@
 
               <div>
                 <h3 class="player-name">{{ jugador.Nombre }}</h3>
-                <span class="player-position">{{ jugador.Posicion }}</span>
               </div>
             </div>
 
@@ -58,7 +59,7 @@
             }
             </div>
 
-          </div>
+          </a>
 
         }
 

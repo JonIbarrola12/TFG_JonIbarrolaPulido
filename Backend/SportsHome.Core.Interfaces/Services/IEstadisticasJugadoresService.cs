@@ -12,5 +12,8 @@ namespace SportsHome.Core.Interfaces.Services
         Task<IEnumerable<EstadisticasJugadores>> GetTop10TarjetasAmarillasAsync(int ligaId, int? temporada = null);
         Task<IEnumerable<EstadisticasJugadores>> GetTop10TarjetasRojasAsync(int ligaId, int? temporada = null);
         Task<IEnumerable<EstadisticasJugadores>> GetTop10MinutosAsync(int ligaId, int? temporada = null);
+        Task<IEnumerable<EstadisticasJugadores>> GetTop10MejoresJugadoresAsync(int? temporada = null);
+        Task<IEnumerable<EstadisticasJugadores>> GetTop10MasProblematicosAsync(int? temporada = null);
+        Task<IEnumerable<EstadisticasJugadores>> GetTop10MinutosTotalesAsync(int? temporada = null);
     }
 }

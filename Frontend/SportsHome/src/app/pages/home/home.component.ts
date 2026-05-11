@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { HomeService } from '../../core/services/home.service';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +10,41 @@ import { RouterLink } from '@angular/router';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  readonly secciones = [
-    { icono: '🏆', titulo: 'Ligas', descripcion: 'Consulta clasificaciones y estadísticas de todas las ligas.', ruta: '/ligas' },
-    { icono: '🛡️', titulo: 'Equipos', descripcion: 'Información detallada de equipos y sus plantillas.', ruta: '/equipos' },
-    { icono: '⚽', titulo: 'Jugadores', descripcion: 'Estadísticas individuales por temporada.', ruta: '/jugadores' },
-    { icono: '📅', titulo: 'Partidos', descripcion: 'Resultados, eventos y estadísticas por partido.', ruta: '/partidos' },
-  ];
+  private readonly servicioHome = inject(HomeService);
+  estadisticasList: any[] = [];
+
+  ngOnInit(): void {
+
+    this.servicioHome.obtenerEstadisticas()
+      .subscribe({
+        next: (data) => {
+          this.estadisticasList = [
+            {
+              titulo: 'Mejores Jugadores',
+              columna: 'G+A',
+              valor: (j: any) => j.Goles + j.Asistencias,
+              datos: data.topMejoresJugadores
+            },
+            {
+              titulo: 'Jugadores Más Problemáticos',
+              columna: 'Tarjetas',
+              valor: (j: any) => j.TarjetasAmarillas + j.TarjetasRojas,
+              datos: data.topMasProblematicos
+            },
+            {
+              titulo: 'Jugadores Con Más Minutos',
+              columna: 'Minutos',
+              valor: (j: any) => j.Minutos,
+              datos: data.topMinutosTotales
+            }
+          ];
+
+        },
+        error: (err) => {
+          console.error(err);
+        }
+    });
+
+  }
+
 }

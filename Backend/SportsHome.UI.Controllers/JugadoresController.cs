@@ -45,9 +45,11 @@ namespace SportsHome.UI.Controllers
                 .Include(e => e.Equipo)
                 .Include(e => e.Liga)
                 .Include(e => e.Jugador)
-                .Where(e => e.JugadorId == jugadorId)
+                .Where(e => e.JugadorId == jugadorId && e.Temporada == 2024)
                 .OrderByDescending(e => e.Temporada)
                 .ToListAsync();
+
+            if (!stats.Any()) return NotFound("No hay estadísticas disponibles para este jugador en la temporada 2024.");
 
             return Ok(_mapper.Map<List<EstadisticasJugadoresResource>>(stats));
         }
@@ -148,6 +150,60 @@ namespace SportsHome.UI.Controllers
         {
             var stats = await _estadisticasService.GetTop10MinutosAsync(ligaId, temporada);
             if (!stats.Any()) return NotFound("No hay estadísticas disponibles para esta liga.");
+
+            var estadisticas = await _context.EstadisticasJugadores
+                .Include(e => e.Jugador)
+                .Include(e => e.Equipo)
+                .Include(e => e.Liga)
+                .Where(e => stats.Select(s => s.EstadisticaJugadorId).Contains(e.EstadisticaJugadorId))
+                .OrderByDescending(e => e.Minutos)
+                .ToListAsync();
+
+            return Ok(_mapper.Map<List<EstadisticasJugadoresResource>>(estadisticas));
+        }
+
+        // GET /api/jugadores/estadisticas/top-mejores-jugadores
+        [HttpGet("estadisticas/top-mejores-jugadores")]
+        public async Task<IActionResult> GetTop10MejoresJugadores([FromQuery] int? temporada = null)
+        {
+            var stats = await _estadisticasService.GetTop10MejoresJugadoresAsync(temporada);
+            if (!stats.Any()) return NotFound("No hay estadísticas disponibles.");
+
+            var estadisticas = await _context.EstadisticasJugadores
+                .Include(e => e.Jugador)
+                .Include(e => e.Equipo)
+                .Include(e => e.Liga)
+                .Where(e => stats.Select(s => s.EstadisticaJugadorId).Contains(e.EstadisticaJugadorId))
+                .OrderByDescending(e => (e.Goles ?? 0) + (e.Asistencias ?? 0))
+                .ToListAsync();
+
+            return Ok(_mapper.Map<List<EstadisticasJugadoresResource>>(estadisticas));
+        }
+
+        // GET /api/jugadores/estadisticas/top-mas-problematicos
+        [HttpGet("estadisticas/top-mas-problematicos")]
+        public async Task<IActionResult> GetTop10MasProblematicos([FromQuery] int? temporada = null)
+        {
+            var stats = await _estadisticasService.GetTop10MasProblematicosAsync(temporada);
+            if (!stats.Any()) return NotFound("No hay estadísticas disponibles.");
+
+            var estadisticas = await _context.EstadisticasJugadores
+                .Include(e => e.Jugador)
+                .Include(e => e.Equipo)
+                .Include(e => e.Liga)
+                .Where(e => stats.Select(s => s.EstadisticaJugadorId).Contains(e.EstadisticaJugadorId))
+                .OrderByDescending(e => (e.TarjetasAmarillas ?? 0) + (e.TarjetasRojas ?? 0))
+                .ToListAsync();
+
+            return Ok(_mapper.Map<List<EstadisticasJugadoresResource>>(estadisticas));
+        }
+
+        // GET /api/jugadores/estadisticas/top-minutos-totales
+        [HttpGet("estadisticas/top-minutos-totales")]
+        public async Task<IActionResult> GetTop10MinutosTotales([FromQuery] int? temporada = null)
+        {
+            var stats = await _estadisticasService.GetTop10MinutosTotalesAsync(temporada);
+            if (!stats.Any()) return NotFound("No hay estadísticas disponibles.");
 
             var estadisticas = await _context.EstadisticasJugadores
                 .Include(e => e.Jugador)

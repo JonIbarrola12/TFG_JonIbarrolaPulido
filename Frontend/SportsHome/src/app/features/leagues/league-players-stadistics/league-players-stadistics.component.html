@@ -1,0 +1,100 @@
+
+<div class="page-wrapper">
+
+  <header class="page-header">
+
+    <a
+      class="back-link"
+      [routerLink]="['/ligas', ligaId, 'equipos', equipoId, 'jugadores']">
+      ← Volver a jugadores
+    </a>
+
+    <h2 class="player-title">
+      Estadísticas del jugador
+    </h2>
+
+    <!-- 👇 JUGADOR HEADER -->
+    @if (estadisticasJugador.length) {
+
+      <div class="player-header">
+
+        <img
+          class="player-avatar"
+          [src]="estadisticasJugador[0]?.Jugador?.Foto"
+          alt="jugador"
+        />
+
+        <div class="player-info">
+          <h3>
+            {{ estadisticasJugador[0]?.Jugador?.NombrePropio }}
+            {{ estadisticasJugador[0]?.Jugador?.Apellido }}
+          </h3>
+
+          <span class="team-info">
+            <img
+              class="team-logo"
+              [src]="estadisticasJugador[0]?.Equipo?.Logo"
+            />
+            {{ estadisticasJugador[0]?.Equipo?.Nombre }}
+          </span>
+
+        </div>
+
+      </div>
+
+    }
+
+  </header>
+
+   @if (cargando) {
+    <p class="status-message">Cargando equipos...</p>
+  } @else if (errorMessage) {
+    <p class="error-message">{{ errorMessage }}</p>
+  } @else {
+    <section class="stats-grid">
+
+      @for (stat of estadisticasJugador; track stat.EstadisticaJugadorId) {
+
+        <div class="stat-card">
+
+          <h4>{{ stat.Liga?.Nombre }}</h4>
+
+          <div class="stat-row">
+            <span>Goles</span>
+            <b>{{ stat.Goles }}</b>
+          </div>
+
+          <div class="stat-row">
+            <span>Asistencias</span>
+            <b>{{ stat.Asistencias }}</b>
+          </div>
+
+          <div class="stat-row">
+            <span>Tarjetas amarillas</span>
+            <b>{{ stat.TarjetasAmarillas }}</b>
+          </div>
+
+          <div class="stat-row">
+            <span>Tarjetas rojas</span>
+            <b>{{ stat.TarjetasRojas }}</b>
+          </div>
+
+          <div class="stat-row">
+            <span>Minutos</span>
+            <b>{{ stat.Minutos }}</b>
+          </div>
+
+          <div class="stat-row">
+            <span>Apariciones</span>
+            <b>{{ stat.Apariciones }}</b>
+          </div>
+
+        </div>
+
+      }
+
+    </section>
+
+  }
+
+</div>

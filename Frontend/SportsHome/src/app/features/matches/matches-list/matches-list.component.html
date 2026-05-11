@@ -72,14 +72,21 @@
       @for (p of partidosPaginados; track p.PartidoId){
 
         <div class="match-card">
-
           <!-- HEADER -->
           <div class="match-header">
-            <span>{{ p.Liga?.Nombre }} - {{ p.Ronda }}</span>
-            <span class="match-status">{{ p.Estado }}</span>
-            <span>{{ p.Fecha | date:'short' }}</span>
-          </div>
+            <span class="match-league">
+              {{ p.Liga?.Nombre }} - {{ p.Ronda }}
+            </span>
 
+            <span class="match-status">
+              {{ p.Estado }}
+            </span>
+
+            <span class="match-date">
+              {{ p.Fecha | date:'short' }}
+            </span>
+
+          </div>
           <!-- TEAMS -->
           <div class="match-teams">
 

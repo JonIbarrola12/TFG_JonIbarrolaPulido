@@ -10,3 +10,98 @@
     </div>
   </div>
 </section>
+<section class="estadisticas-home">
+
+  <div class="estadisticas-section">
+
+    @for (stat of estadisticasList; track stat.titulo) {
+
+      <div class="estadistica-card">
+
+        <h3>{{ stat.titulo }}</h3>
+
+        @if (stat.datos?.length) {
+
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Jugador</th>
+                <th>{{ stat.columna }}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              @for (jugador of stat.datos; track jugador; let i = $index) {
+
+                <tr>
+
+                  <td class="ranking">
+                    {{ i + 1 }}
+                  </td>
+
+                  <td class="jugador-cell">
+
+                    <div class="jugador-info">
+
+                      <img
+                        class="jugador-foto"
+                        [src]="jugador.Jugador?.Foto"
+                        alt="jugador"
+                      >
+
+                      <div class="jugador-texto">
+
+                        <span class="jugador-nombre">
+                          {{ jugador.Jugador?.Nombre }}
+                        </span>
+
+                        <div class="equipo-info">
+
+                          <img
+                            class="equipo-logo"
+                            [src]="jugador.Equipo?.Logo"
+                            alt="equipo"
+                          >
+
+                          <span class="equipo-nombre">
+                            {{ jugador.Equipo?.Nombre }}
+                          </span>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </td>
+
+                  <td class="stat-value">
+                    {{ stat.valor(jugador) }}
+                  </td>
+
+                </tr>
+
+              }
+
+            </tbody>
+
+          </table>
+
+        } @else {
+
+          <div class="sin-datos">
+            No hay datos.
+          </div>
+
+        }
+
+      </div>
+
+    }
+
+  </div>
+
+</section>
+

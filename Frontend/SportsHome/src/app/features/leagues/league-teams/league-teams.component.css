@@ -1,90 +1,183 @@
 .page-wrapper {
-  max-width: 900px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 24px 20px;
+  padding: 2.5rem 1.5rem 4rem;
+  color: #fff;
 }
 
+/* ================= HEADER ================= */
+
 .page-header {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 2.5rem;
 }
 
 .back-link {
-  font-size: 0.95rem;
-  color: #0f4c81;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+
+  margin-bottom: 1.5rem;
+
+  color: #93c5fd;
   text-decoration: none;
+  font-weight: 600;
+
+  transition: all 0.2s ease;
 }
 
 .back-link:hover {
-  text-decoration: underline;
+  color: white;
+  transform: translateX(-3px);
 }
 
 h2 {
   margin: 0;
-  font-size: 1.75rem;
-  color: #1f2937;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: var(--color-text-primary);
 }
 
-.page-text {
-  color: #475569;
-  line-height: 1.6;
-}
-/* GRID */
+/* ================= GRID ================= */
+
 .teams-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
 }
 
-/* CARD */
+/* ================= CARD ================= */
+
 .team-card {
+  position: relative;
+  overflow: hidden;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  height: 220px; /* ⭐ mismo tamaño */
-  padding: 1.2rem;
+  height: 240px;
+  padding: 1.5rem;
 
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.04),
+      rgba(255,255,255,0.01)
+    );
+
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
 
   text-decoration: none;
   color: inherit;
 
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(10px);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
+/* glow decorativo */
+.team-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(59,130,246,0.15),
+    transparent 50%
+  );
+  pointer-events: none;
+}
+
+/* hover pro */
 .team-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transform: translateY(-6px);
+  border-color: rgba(59,130,246,0.4);
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.35),
+    0 0 0 1px rgba(59,130,246,0.15);
 }
 
-/* HEADER */
+/* ================= HEADER TEAM ================= */
+
 .team-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.8rem;
+  z-index: 2;
 }
 
 .team-logo {
-  width: 40px;
-  height: 40px;
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+
+  padding: 0.4rem;
+
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
 .team-header h3 {
   font-size: 1.1rem;
   margin: 0;
+  font-weight: 700;
+  color: var(--color-text-primary);
 }
 
-/* INFO */
+/* ================= INFO ================= */
+
 .team-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
   font-size: 0.85rem;
   color: var(--color-text-secondary);
+
+  z-index: 2;
 }
 
 .team-info p {
-  margin: 2px 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+/* labels más limpios */
+.team-info strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+/* ================= LOADING / ERROR ================= */
+
+.status-message {
+  color: var(--color-text-secondary);
+}
+
+.error-message {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .team-card {
+    height: auto;
+    padding: 1.2rem;
+  }
+
+  .team-logo {
+    width: 44px;
+    height: 44px;
+  }
 }

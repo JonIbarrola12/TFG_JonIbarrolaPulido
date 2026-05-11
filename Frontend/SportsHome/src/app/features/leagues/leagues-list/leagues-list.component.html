@@ -1,5 +1,8 @@
 <div class="page-wrapper">
   <header class="page-header">
+    <a class="back-link" [routerLink]="['/']">
+      ← Volver al Inicio
+    </a>
     <h2>Ligas</h2>
     <p>Explora las competiciones disponibles y encuentra la liga que te interesa.</p>
   </header>
@@ -23,7 +26,17 @@
                   <p><strong>Temporada:</strong> {{ liga.temporada }}</p>
                 }
                 @if (liga.activa !== undefined) {
-                  <p><strong>Estado:</strong> {{ liga.activa ? 'Activa' : 'Inactiva' }}</p>
+                  <p>
+                    <strong>Estado:</strong>
+
+                    <span
+                      class="league-status"
+                      [class.league-status--active]="liga.activa"
+                      [class.league-status--inactive]="!liga.activa"
+                    >
+                      {{ liga.activa ? 'Activa' : 'Inactiva' }}
+                    </span>
+                  </p>
                 }
               </div>
             }
