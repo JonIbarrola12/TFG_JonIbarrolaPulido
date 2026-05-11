@@ -4,6 +4,26 @@
   padding: 24px 20px;
   color: white;
 }
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  margin-bottom: 1.5rem;
+
+  color: #93c5fd;
+
+  text-decoration: none;
+
+  font-weight: 600;
+
+  transition: 0.2s ease;
+}
+
+.back-link:hover {
+  color: white;
+  transform: translateX(-3px);
+}
 
 /* LISTA */
 .matches-list {

@@ -1,5 +1,11 @@
 <div class="page-wrapper">
 
+  <a
+      class="back-link"
+      [routerLink]="['/']">
+      ← Volver al Inicio
+    </a>
+
   <h2>Todos los partidos</h2>
 
   @if (partidos.length === 0) {
