@@ -1,6 +1,3 @@
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using SportsHome.Core.Interfaces.Services;
 
 namespace SportsHome.UI.API

@@ -138,13 +138,12 @@ namespace SportsHome.UI.Controllers
             if (usuario == null)
                 return NotFound();
 
-            // SOLO actualizas lo permitido
             usuario.Nombre = resource.Nombre ?? usuario.Nombre;
             usuario.Apellidos = resource.Apellidos ?? usuario.Apellidos;
             usuario.NombreUsuario = resource.NombreUsuario ?? usuario.NombreUsuario;
             usuario.UrlAvatar = resource.UrlAvatar ?? usuario.UrlAvatar;
 
-            await _usuariosService.Update(usuario, usuario); // o mejor UpdateAsync directo
+            await _usuariosService.Update(usuario, usuario); 
 
             return Ok(_mapper.Map<UsuariosResource>(usuario));
         }
@@ -163,7 +162,7 @@ namespace SportsHome.UI.Controllers
             if (!file.ContentType.StartsWith("image/"))
                 return BadRequest("Solo se permiten imágenes");
 
-            // 🔥 1. BORRAR AVATAR ANTERIOR
+            // BORRAR AVATAR ANTERIOR
             if (!string.IsNullOrEmpty(usuario.UrlAvatar))
             {
                 var oldFileName = Path.GetFileName(usuario.UrlAvatar);
@@ -175,7 +174,7 @@ namespace SportsHome.UI.Controllers
                 }
             }
 
-            // 🔥 2. GUARDAR NUEVA IMAGEN
+            // GUARDAR NUEVA IMAGEN
             var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
             var path = Path.Combine("wwwroot/avatars", fileName);
 

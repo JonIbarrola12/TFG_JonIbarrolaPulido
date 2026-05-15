@@ -117,7 +117,7 @@ namespace SportsHome.UI.Controllers
                 .Include(p => p.Liga)
                 .AsQueryable();
 
-            // 🔥 FILTRO SOLO DIA + MES
+            // FILTRO SOLO DIA + MES
             if (fechaInicio.HasValue && !fechaFin.HasValue)
             {
                 query = query.Where(p =>
@@ -146,7 +146,7 @@ namespace SportsHome.UI.Controllers
                 );
             }
 
-            // ⚽ filtro equipos
+            //  Filtro equipos
             if (equipos != null && equipos.Any())
             {
                 query = query.Where(p =>
@@ -155,7 +155,7 @@ namespace SportsHome.UI.Controllers
                 );
             }
 
-            // 🔥 ORDEN CORRECTO (por jornada real)
+            // ORDEN CORRECTO (por jornada real)
             query = query
                 .OrderBy(p => p.LigaId)
                 .ThenBy(p => p.Temporada)

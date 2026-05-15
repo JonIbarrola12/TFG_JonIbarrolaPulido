@@ -44,17 +44,13 @@ export class MatchesListComponent implements OnInit {
   equiposSeleccionados: number[] = [];
   dropdownAbierto = false;
 
-  // =========================
   // INIT
-  // =========================
   ngOnInit(): void {
     this.cargarPartidos();
     this.cargarEquipos();
   }
 
-  // =========================
   // CARGA PARTIDOS
-  // =========================
   cargarPartidos() {
     this.cargando = true;
 
@@ -75,9 +71,7 @@ export class MatchesListComponent implements OnInit {
     });
   }
 
-  // =========================
   // CARGA EQUIPOS
-  // =========================
   cargarEquipos() {
     this.partidosService.getEquipos().subscribe({
       next: (data) => {
@@ -91,9 +85,7 @@ export class MatchesListComponent implements OnInit {
     });
   }
 
-  // =========================
   // PAGINACIÓN
-  // =========================
   get partidosPaginados() {
     const inicio = (this.paginaActual - 1) * this.tamanoPagina;
     return this.partidosFiltrados.slice(inicio, inicio + this.tamanoPagina);
@@ -109,9 +101,7 @@ export class MatchesListComponent implements OnInit {
     this.paginaActual = pagina;
   }
 
-  // =========================
   // FILTROS
-  // =========================
   aplicarFiltros() {
 
     let filtrados = [...this.partidos];
@@ -156,9 +146,7 @@ export class MatchesListComponent implements OnInit {
     this.paginaActual = 1;
   }
 
-  // =========================
   // RESET
-  // =========================
   resetFiltros() {
     this.fechaInicio = null;
     this.fechaFin = null;
@@ -168,9 +156,7 @@ export class MatchesListComponent implements OnInit {
     this.paginaActual = 1;
   }
 
-  // =========================
   // DROPDOWN
-  // =========================
   toggleDropdown() {
     this.dropdownAbierto = !this.dropdownAbierto;
   }
@@ -184,9 +170,7 @@ export class MatchesListComponent implements OnInit {
     }
   }
 
-  // =========================
   // UTIL
-  // =========================
   private normalizarFecha(fecha: any): string {
     if (!fecha) return '';
 
